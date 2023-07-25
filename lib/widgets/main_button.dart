@@ -34,10 +34,10 @@ class MainButton extends StatelessWidget {
           height: size,
           onPressed: routeTo != null ? routeTo! as void Function() : null,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Dimensions.radius10),
+            borderRadius: BorderRadius.circular(Dimensions.radius15),
             side: BorderSide(
               color: borderColor!,
-              width: Dimensions.width2,
+              width: 2,
             ),
           ),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -46,7 +46,7 @@ class MainButton extends StatelessWidget {
                 icon,
                 color: iconColor,
               ),
-            SizedBox(width: Dimensions.width2),
+            SizedBox(width: Dimensions.width5),
             BigText(text: text!, size: Dimensions.font18, color: textColor),
           ]
         )

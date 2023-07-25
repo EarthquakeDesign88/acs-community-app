@@ -17,7 +17,7 @@ class NoBooking extends StatelessWidget {
             color: AppColors.greyColor,
             size: 150,
           ),
-          BigText(text: "ยังไม่มีการจองของฉัน", size: Dimensions.font26)
+          BigText(text: "ยังไม่มีการจองของฉัน", size: Dimensions.font22)
         ],
       ),
     );

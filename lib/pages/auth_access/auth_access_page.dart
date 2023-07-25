@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
-// import 'package:timer_builder/timer_builder.dart';
 import 'package:acs_community/widgets/bottom_navbar.dart';
 import 'package:acs_community/services/qr_data.dart';
-import 'package:acs_community/pages/auth_access/components/body.dart';
+import 'package:acs_community/pages/auth_access/components/body_auth_access.dart';
 import 'dart:math';
 
 class AuthAccessPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _AuthAccessPageState extends State<AuthAccessPage> {
 
   void generateQRCode() {
     String randomData = generateRandomCode(50);
-
+    sendQRData(randomData);
     setState(() {
       qrData = randomData;
     });
@@ -42,10 +41,10 @@ class _AuthAccessPageState extends State<AuthAccessPage> {
   void initState() {
     super.initState();
     generateQRCode();
-    sendQRData(qrData);
   }
 
   int _currentIndex = 0;
+  
   void _onTabChanged(int index) {
     setState(() {
       _currentIndex = index;
@@ -56,14 +55,15 @@ class _AuthAccessPageState extends State<AuthAccessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: AppColors.whiteColor,
-          iconTheme: const IconThemeData(
-            color: AppColors.darkGreyColor,
-          ),
-          centerTitle: true,
-          title: BigText(text: "เข้าใช้งานลิฟท์", size: Dimensions.font20)),
-      body: Body(qrData: qrData),
+        elevation: 0,
+        backgroundColor: AppColors.whiteColor,
+        iconTheme: const IconThemeData(
+          color: AppColors.darkGreyColor,
+        ),
+        centerTitle: true,
+        title: BigText(text: "เข้าใช้งานลิฟท์", size: Dimensions.font20)
+      ),
+      body: BodyAuthAccess(qrData: qrData),
       bottomNavigationBar: BottomNavbar(
         currentIndex: _currentIndex,
         onTabChanged: _onTabChanged,

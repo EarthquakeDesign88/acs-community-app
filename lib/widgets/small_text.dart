@@ -7,18 +7,20 @@ class SmallText extends StatelessWidget {
   final double size;
   final double height;
 
-  const SmallText(
-      {Key? key,
-      this.color = AppColors.secondaryTextColor,
-      required this.text,
-      this.size = 0,
-      this.height = 1.2}) : super(key: key);
+  const SmallText({
+    Key? key,
+    this.color = AppColors.secondaryTextColor,
+    required this.text,
+    this.size = 0,
+    this.height = 1.2
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: TextStyle(
+        // fontFamily: 'Roboto',
         color: color,
         fontSize: size == 0 ? Dimensions.font16 : size,
         height: height

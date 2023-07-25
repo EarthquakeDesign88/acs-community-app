@@ -4,8 +4,6 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/widgets/custom_icon.dart';
 import 'package:acs_community/widgets/bottom_line.dart';
-import 'package:acs_community/routes/route_helper.dart';
-import 'package:get/get.dart';
 
 class BodyNotification extends StatefulWidget {
   const BodyNotification({super.key});
@@ -200,7 +198,7 @@ class _BodyNotificationState extends State<BodyNotification> {
               ],
             ),
             SizedBox(height: Dimensions.height5),
-            BottomLine(),
+            const BottomLine(),
             SizedBox(height: Dimensions.height5),
             Row(
               children: [
@@ -241,7 +239,7 @@ class _BodyNotificationState extends State<BodyNotification> {
               ],
             ),
             SizedBox(height: Dimensions.height5),
-            BottomLine(),
+            const BottomLine(),
             SizedBox(height: Dimensions.height5),
             Row(
               children: [
@@ -282,7 +280,7 @@ class _BodyNotificationState extends State<BodyNotification> {
               ],
             ),
             SizedBox(height: Dimensions.height5),
-            BottomLine(),
+            const BottomLine(),
             SizedBox(height: Dimensions.height5),
             Row(
               children: [

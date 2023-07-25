@@ -12,21 +12,23 @@ class MyUnitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            elevation: 0,
-            backgroundColor: AppColors.whiteColor,
-            iconTheme: const IconThemeData(
-              color: AppColors.darkGreyColor,
-            ),
-            centerTitle: true,
-            title: BigText(text: "ห้องของฉัน", size: Dimensions.font20)),
-        body: const BodyMyUnit(),
-        bottomNavigationBar: MainButton(
-          text: "เพิ่มห้อง",
-          icon: Icons.add,
-          routeTo: () {
-            Get.toNamed(RouteHelper.addUnit);
-          },
-        ));
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.whiteColor,
+        iconTheme: const IconThemeData(
+          color: AppColors.darkGreyColor,
+        ),
+        centerTitle: true,
+        title: BigText(text: "ห้องของฉัน", size: Dimensions.font20)
+      ),
+      body: const BodyMyUnit(),
+      bottomNavigationBar: MainButton(
+        text: "เพิ่มห้อง",
+        icon: Icons.add,
+        routeTo: () {
+          Get.toNamed(RouteHelper.addUnit);
+        },
+      )
+    );
   }
 }

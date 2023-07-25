@@ -4,9 +4,15 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/widgets/bottom_line.dart';
 import 'package:acs_community/widgets/fullscreen_image.dart';
+import 'package:get/get.dart';
+import 'package:acs_community/controllers/parcel_controller.dart';
+import 'package:acs_community/models/parcel_model.dart';
+import 'package:acs_community/functions/format_datetime.dart'; 
 
 class BodyHistoryParcel extends StatefulWidget {
-  const BodyHistoryParcel({Key? key}) : super(key: key);
+  final int parcelId;
+
+  const BodyHistoryParcel({Key? key, required this.parcelId}) : super(key: key);
 
   @override
   State<BodyHistoryParcel> createState() => _BodyHistoryParcelState();
@@ -15,6 +21,9 @@ class BodyHistoryParcel extends StatefulWidget {
 class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
   @override
   Widget build(BuildContext context) {
+    final ParcelController _parcelController = Get.find();
+    final Parcel? parcel = _parcelController.getParcelById(widget.parcelId);
+
     return Stack(
       children: [
         Column(
@@ -46,9 +55,9 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const FullScreenImage(
-                            imageUrl:
-                                'https://images.unsplash.com/photo-1614018453562-77f6180ce036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                          builder: (context) => FullScreenImage(
+                            imageUrl: parcel?.fileDocument ??
+                            'assets/images/s1.jpg'
                           ),
                         ),
                       );
@@ -57,11 +66,11 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                       height: 150,
                       width: MediaQuery.of(context).size.width - 95,
                       decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius20),
-                        image: const DecorationImage(
-                          image: NetworkImage(
-                            'https://images.unsplash.com/photo-1614018453562-77f6180ce036?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            parcel?.fileDocument ??
+                            'assets/images/s1.jpg'
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -80,9 +89,11 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                                 0.5), // Adjust the opacity as needed
                           ), // Adjust the color as needed
                           child: const Center(
-                              child: SmallText(
-                                  text: "พัสดุรับแล้ว",
-                                  color: AppColors.whiteColor)),
+                            child: SmallText(
+                              text: "พัสดุรับแล้ว",
+                              color: AppColors.whiteColor
+                            )
+                          ),
                         ),
                       ),
                     ),
@@ -98,23 +109,24 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: Dimensions.width20),
+                              padding: EdgeInsets.only(left: Dimensions.width20),
                               child: SmallText(
-                                  text: "รับพัสดุเมื่อ",
-                                  size: Dimensions.font16),
+                                text: "รับพัสดุเมื่อ",
+                                size: Dimensions.font16
+                              ),
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(right: Dimensions.width20),
+                              padding: EdgeInsets.only(right: Dimensions.width20),
                               child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: BigText(
-                                      text: "23 มิ.ย. 66 /13.20 น.",
-                                      size: Dimensions.font16,
-                                      color: AppColors.blackColor)),
+                                alignment: Alignment.centerRight,
+                                child: BigText(
+                                  text: formatDateTime(parcel?.collectedDateTime),
+                                  size: Dimensions.font14,
+                                  color: AppColors.blackColor
+                                )
+                              ),
                             ),
                           ),
                         ]),
@@ -126,23 +138,24 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: Dimensions.width20),
+                              padding: EdgeInsets.only(left: Dimensions.width20),
                               child: SmallText(
-                                  text: "ชื่อผู้มารับพัสดุ",
-                                  size: Dimensions.font16),
+                                text: "ชื่อผู้มารับพัสดุ",
+                                size: Dimensions.font16
+                              ),
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(right: Dimensions.width20),
+                              padding: EdgeInsets.only(right: Dimensions.width20),
                               child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: BigText(
-                                      text: "คุณสายชล",
-                                      size: Dimensions.font16,
-                                      color: AppColors.blackColor)),
+                                alignment: Alignment.centerRight,
+                                child: BigText(
+                                  text: parcel?.collectedBy ?? 'ไม่พบข้อมูล',
+                                  size: Dimensions.font16,
+                                  color: AppColors.blackColor
+                                )
+                              ),
                             ),
                           ),
                         ]),
@@ -154,23 +167,24 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(left: Dimensions.width20),
+                              padding: EdgeInsets.only(left: Dimensions.width20),
                               child: SmallText(
-                                  text: "จ่ายพัสดุออกโดย",
-                                  size: Dimensions.font16),
+                                text: "จ่ายพัสดุออกโดย",
+                                size: Dimensions.font16
+                              ),
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(right: Dimensions.width20),
+                              padding: EdgeInsets.only(right: Dimensions.width20),
                               child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: BigText(
-                                      text: "Pornphimon",
-                                      size: Dimensions.font16,
-                                      color: AppColors.blackColor)),
+                                alignment: Alignment.centerRight,
+                                child: BigText(
+                                  text: parcel?.releasedBy ?? 'ไม่พบข้อมูล',
+                                  size: Dimensions.font16,
+                                  color: AppColors.blackColor
+                                )
+                              ),
                             ),
                           ),
                         ]),
@@ -198,11 +212,13 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width20),
                           child: Align(
-                              alignment: Alignment.centerRight,
-                              child: BigText(
-                                  text: "3300/25",
-                                  size: Dimensions.font16,
-                                  color: AppColors.blackColor)),
+                            alignment: Alignment.centerRight,
+                            child: BigText(
+                              text: parcel?.unitNo ?? 'ไม่พบข้อมูล',
+                              size: Dimensions.font16,
+                              color: AppColors.blackColor
+                            )
+                          ),
                         ),
                       ),
                     ]),
@@ -216,19 +232,22 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                         child: Padding(
                           padding: EdgeInsets.only(left: Dimensions.width20),
                           child: SmallText(
-                              text: "ชื่อเจ้าของพัสดุ",
-                              size: Dimensions.font16),
+                            text: "ชื่อเจ้าของพัสดุ",
+                            size: Dimensions.font16
+                          ),
                         ),
                       ),
                       Expanded(
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width20),
                           child: Align(
-                              alignment: Alignment.centerRight,
-                              child: BigText(
-                                  text: "ACS",
-                                  size: Dimensions.font16,
-                                  color: AppColors.blackColor)),
+                            alignment: Alignment.centerRight,
+                            child: BigText(
+                              text: parcel?.owner ?? 'ไม่พบข้อมูล',
+                              size: Dimensions.font16,
+                              color: AppColors.blackColor
+                            )
+                          ),
                         ),
                       ),
                     ]),
@@ -252,7 +271,7 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                           child: Align(
                               alignment: Alignment.centerRight,
                               child: BigText(
-                                  text: "RK276725623TH",
+                                  text: parcel?.trackingNo ?? 'ไม่พบข้อมูล',
                                   size: Dimensions.font16,
                                   color: AppColors.blackColor)),
                         ),
@@ -277,7 +296,7 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                           child: Align(
                               alignment: Alignment.centerRight,
                               child: BigText(
-                                  text: "Thailand Post",
+                                  text: parcel?.deliveryService ?? 'ไม่พบข้อมูล',
                                   size: Dimensions.font16,
                                   color: AppColors.blackColor)),
                         ),
@@ -300,12 +319,14 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                         child: Padding(
                           padding: EdgeInsets.only(right: Dimensions.width20),
                           child: Align(
-                              alignment: Alignment.centerRight,
-                              child: BigText(
-                                  text: "ซองจดหมาย",
-                                  size: Dimensions.font16,
-                                  color: AppColors.blackColor)),
-                        ),
+                            alignment: Alignment.centerRight,
+                            child: BigText(
+                              text: parcel?.type ?? 'ไม่พบข้อมูล',
+                              size: Dimensions.font16,
+                              color: AppColors.blackColor
+                            )
+                          ),
+                      ),
                       ),
                     ]),
                 SizedBox(height: Dimensions.height2),
@@ -327,8 +348,8 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                           child: Align(
                               alignment: Alignment.centerRight,
                               child: BigText(
-                                  text: "20 มิ.ย 66 / 15:56 น.",
-                                  size: Dimensions.font16,
+                                  text: formatDateTime(parcel?.addedDateTime),
+                                  size: Dimensions.font14,
                                   color: AppColors.blackColor)),
                         ),
                       ),
@@ -352,7 +373,7 @@ class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
                           child: Align(
                               alignment: Alignment.centerRight,
                               child: BigText(
-                                  text: "นิติบุคคลอาคารชุด",
+                                  text: parcel?.addedBy ?? 'ไม่พบข้อมูล',
                                   size: Dimensions.font16,
                                   color: AppColors.blackColor)),
                         ),

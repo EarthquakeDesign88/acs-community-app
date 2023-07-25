@@ -23,8 +23,7 @@ class _BodyMyUnitState extends State<BodyMyUnit> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Center(
-              child: BigText(text: "แก้ไขบทบาท", size: Dimensions.font22)),
+          title: Center(child: BigText(text: "แก้ไขบทบาท", size: Dimensions.font22)),
           content: EditRoleContent(
             onRoleChanged: (role) {
               setState(() {

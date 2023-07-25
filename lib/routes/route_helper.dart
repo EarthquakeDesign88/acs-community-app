@@ -9,6 +9,7 @@ import 'package:acs_community/pages/sign_up/sign_up_page.dart';
 import 'package:acs_community/pages/home/home_page.dart';
 import 'package:acs_community/pages/social/social_page.dart';
 import 'package:acs_community/pages/announcement/announcement_page.dart';
+import 'package:acs_community/pages/announcement/announcement_detail_page.dart';
 import 'package:acs_community/pages/setting/setting_page.dart';
 import 'package:acs_community/pages/setting/personal_info_page.dart';
 import 'package:acs_community/pages/setting/personal/name_page.dart';
@@ -43,6 +44,7 @@ import 'package:acs_community/pages/suggestion/suggestion_page.dart';
 import 'package:acs_community/pages/community_rule/community_rule_page.dart';
 import 'package:acs_community/pages/payment_reminder/payment_reminder_page.dart';
 import 'package:acs_community/pages/payment_reminder/payment_reminder_detail_page.dart';
+import 'package:acs_community/pages/payment_reminder/attach_proof_payment_page.dart';
 
 class RouteHelper {
   static String initial = "/";
@@ -56,6 +58,7 @@ class RouteHelper {
   static String home = "/home";
   static String social = "/social";
   static String announcement = "/announcement";
+  static String announcementDetail = "/announcement/detail";
   static String setting = "/setting";
   static String personalInfo = "/setting/personal_info";
   static String namePersonalInfo = "/setting/personal_info/name";
@@ -68,7 +71,7 @@ class RouteHelper {
   static String notifications = "/setting/notifications";
   static String appVersion = "/setting/app_version";
   static String faq = "/setting/faq";
-  static String faqDetail = "/setting/faq_detail";
+  static String faqDetail = "/setting/fag/detail";
   static String privacyPolicy = "/setting/privacy_policy";
   static String termService = "/setting/term_service";
   static String settingSuggestion = "/setting/suggestion";
@@ -90,50 +93,61 @@ class RouteHelper {
   static String communityRule = '/community_rule';
   static String paymentReminder = '/payment_reminder';
   static String paymentReminderDetail = '/payment_reminder/detail';
+  static String attachProofPayment = '/payment_reminder/attach_proof_payment';
 
-  static String getWelcome() => welcome;
-  static String getSignIn() => signIn;
-  static String getSignUp() => signUp;
-  static String getConfirmSignIn() => confirmSignIn;
-  static String getVerifyOtp() => verifyOtp;
-  static String getInprogressSignIn() => inprogressSignIn;
-  static String getCommunityConfirm() => communityConfirm;
-  static String getHome() => home;
-  static String getSocial() => social;
-  static String getSetting() => setting;
-  static String getPersonalInfo() => personalInfo;
-  static String getNamePersonalInfo() => namePersonalInfo;
-  static String getGenderPersonalInfo() => genderPersonalInfo;
-  static String getBirthDatePersonalInfo() => birthDatePersonalInfo;
-  static String getPhoneNumberPersonalInfo() => phoneNumberPersonalInfo;
-  static String getEmailPasswordPersonalInfo() => emailPasswordPersonalInfo;
-  static String getEmailPersonalInfo() => emailPersonalInfo;
-  static String getDeleteAccountPersonalInfo() => deleteAccountPersonalInfo;
-  static String getNotifications() => notifications;
-  static String getAppversion() => appVersion;
-  static String getFaq() => faq;
-  static String getFaqDetail(String faqItem, int detailId) => '$faqDetail?faqItem=$faqItem&detailId=$detailId';
-  static String getPrivacyPolicy() => privacyPolicy;
-  static String getTermService() => termService;
-  static String getSettingSuggestion() => settingSuggestion;
-  static String getAuthAccess() => authAccess;
-  static String getChat() => chat;
-  static String getParcel() => parcel;
-  static String getNewParcel() => newParcel;
-  static String getHistoryParcel() => historyParcel;
-  static String getFacility() => facility;
-  static String getFacilityBooking() => facilityBooking;
-  static String getMyUnit() => myUnit;
-  static String getInvitationCode() => invitationCode;
-  static String getAddUnit() => addUnit;
-  static String getRepair() => repair;
-  static String getRequestRepair() => requestRepair;
-  static String getPhoneBook() => phoneBook;
-  static String getPropertyManagement() => propertyManagement;
-  static String getSuggestion() => suggestion;
-  static String getCommunityRule() => communityRule;
-  static String getPaymentReminder() => paymentReminder;
-  static String getPaymentReminderDetail() => paymentReminderDetail;
+  // static String getWelcome() => welcome;
+  // static String getSignIn() => signIn;
+  // static String getSignUp() => signUp;
+  // static String getConfirmSignIn() => confirmSignIn;
+  // static String getVerifyOtp() => verifyOtp;
+  // static String getInprogressSignIn() => inprogressSignIn;
+  // static String getCommunityConfirm() => communityConfirm;
+  // static String getHome() => home;
+  // static String getSocial() => social;
+  // static String getSetting() => setting;
+  // static String getPersonalInfo() => personalInfo;
+  // static String getNamePersonalInfo() => namePersonalInfo;
+  // static String getGenderPersonalInfo() => genderPersonalInfo;
+  // static String getBirthDatePersonalInfo() => birthDatePersonalInfo;
+  // static String getPhoneNumberPersonalInfo() => phoneNumberPersonalInfo;
+  // static String getEmailPasswordPersonalInfo() => emailPasswordPersonalInfo;
+  // static String getEmailPersonalInfo() => emailPersonalInfo;
+  // static String getDeleteAccountPersonalInfo() => deleteAccountPersonalInfo;
+  // static String getNotifications() => notifications;
+  // static String getAppversion() => appVersion;
+  // static String getFaq() => faq;
+  // static String getPrivacyPolicy() => privacyPolicy;
+  // static String getTermService() => termService;
+  // static String getSettingSuggestion() => settingSuggestion;
+  // static String getAuthAccess() => authAccess;
+  // static String getChat() => chat;
+  // static String getParcel() => parcel;
+  // static String getNewParcel() => newParcel;
+  // static String getHistoryParcel() => historyParcel;
+  // static String getFacility() => facility;
+  // static String getFacilityBooking() => facilityBooking;
+  // static String getMyUnit() => myUnit;
+  // static String getInvitationCode() => invitationCode;
+  // static String getAddUnit() => addUnit;
+  // static String getRepair() => repair;
+  // static String getRequestRepair() => requestRepair;
+  // static String getPhoneBook() => phoneBook;
+  // static String getPropertyManagement() => propertyManagement;
+  // static String getSuggestion() => suggestion;
+  // static String getCommunityRule() => communityRule;
+  // static String getPaymentReminder() => paymentReminder;
+  // static String getPaymentReminderDetail() => paymentReminderDetail;
+  // static String getAttachProofPayment() => attachProofPayment;
+
+  static String getFaqDetail(String faqItem, int detailId) =>
+      '$faqDetail?detailId=$detailId&faqItem=$faqItem';
+  static String getAnnouncementDetail(int detailId) =>
+      '$announcementDetail?detailId=$detailId';
+  static String getFacilityBooking(int facilityId) =>
+      '$facilityBooking?facilityId=$facilityId';
+  static String getNewParcel(int parcelId) => '$newParcel?parcelId=$parcelId';
+  static String getHistoryParcel(int parcelId) =>
+      '$historyParcel?parcelId=$parcelId';
 
   static List<GetPage> routes = [
     GetPage(name: welcome, page: () => const WelcomePage()),
@@ -146,6 +160,14 @@ class RouteHelper {
     GetPage(name: home, page: () => const HomePage()),
     GetPage(name: social, page: () => const SocialPage()),
     GetPage(name: announcement, page: () => const AnnouncementPage()),
+    GetPage(
+      name: announcementDetail,
+      page: () {
+        var detailId = Get.parameters['detailId'];
+        return AnnouncementDetailPage(detailId: int.parse(detailId!));
+      },
+      transition: Transition.fadeIn
+    ),
     GetPage(name: setting, page: () => const SettingPage()),
     GetPage(name: personalInfo, page: () => const PersonalInfoPage()),
     GetPage(name: namePersonalInfo, page: () => const NamePersonalInfoPage()),
@@ -154,9 +176,7 @@ class RouteHelper {
     GetPage(name: phoneNumberPersonalInfo, page: () => const PhoneNumberPersonalInfoPage()),
     GetPage(name: emailPasswordPersonalInfo, page: () => const EmailPasswordPersonalInfoPage()),
     GetPage(name: emailPersonalInfo, page: () => const EmailPersonalInfoPage()),
-    GetPage(
-        name: deleteAccountPersonalInfo,
-        page: () => const DeleteAccountPersonalInfoPage()),
+    GetPage(name: deleteAccountPersonalInfo, page: () => const DeleteAccountPersonalInfoPage()),
     GetPage(name: notifications, page: () => const NotificationsPage()),
     GetPage(name: appVersion, page: () => const AppVersionPage()),
     GetPage(name: faq, page: () => const FaqPage()),
@@ -176,10 +196,31 @@ class RouteHelper {
     GetPage(name: authAccess, page: () => const AuthAccessPage()),
     GetPage(name: chat, page: () => const ChatPage()),
     GetPage(name: parcel, page: () => const ParcelPage()),
-    GetPage(name: newParcel, page: () => const NewParcelPage()),
-    GetPage(name: historyParcel, page: () => const HistoryParcelPage()),
+    GetPage(
+      name: newParcel,
+      page: () {
+        var parcelId = Get.parameters['parcelId'];
+        return NewParcelPage(parcelId: int.parse(parcelId!));
+      },
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: historyParcel,
+      page: () {
+        var parcelId = Get.parameters['parcelId'];
+        return HistoryParcelPage(parcelId: int.parse(parcelId!));
+      },
+      transition: Transition.fadeIn,
+    ),
     GetPage(name: facility, page: () => const FacilityPage()),
-    GetPage(name: facilityBooking, page: () => const FacilityBookingPage()),
+    GetPage(
+      name: facilityBooking,
+      page: () {
+        var facilityId = Get.parameters['facilityId'];
+        return FacilityBookingPage(facilityId: int.parse(facilityId!));
+      },
+      transition: Transition.fadeIn
+    ),
     GetPage(name: myUnit, page: () => const MyUnitPage()),
     GetPage(name: invitationCode, page: () => const InvitationCodePage()),
     GetPage(name: addUnit, page: () => const AddUnitPage()),
@@ -191,6 +232,6 @@ class RouteHelper {
     GetPage(name: communityRule, page: () => const CommunityRulePage()),
     GetPage(name: paymentReminder, page: () => const PaymentReminderPage()),
     GetPage(name: paymentReminderDetail, page: () => const PaymentReminderDetailPage()),
-
+    GetPage(name: attachProofPayment, page: () => const AttachProofPaymentPage()),
   ];
 }

@@ -1,10 +1,10 @@
-import 'package:acs_community/widgets/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
+import 'package:acs_community/widgets/small_text.dart';
 
-class NoInformation extends StatelessWidget {
-  const NoInformation({super.key});
+class NoRule extends StatelessWidget {
+  const NoRule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,10 @@ class NoInformation extends StatelessWidget {
             color: AppColors.greyColor,
             size: 150,
           ),
-          BigText(text: "ไม่มีระเบียบชุมชน", size: Dimensions.font26),
+          SizedBox(height: Dimensions.height20), 
+          BigText(text: "ไม่มีระเบียบชุมชน", size: Dimensions.font22),
           SizedBox(height: Dimensions.height10),
-          const SmallText(
-              text: "เมื่อมีรายการระเบียบชุมชน ข้อมูลจะแสดงในหน้านี้")
+          const SmallText(text: "เมื่อมีรายการระเบียบชุมชน ข้อมูลจะแสดงในหน้านี้"),
         ],
       ),
     );

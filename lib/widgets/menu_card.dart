@@ -12,27 +12,28 @@ class MenuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onPressed as void Function()?,
-        child: SizedBox(
-          height: Dimensions.height60, // Set the desired height
-          width: double.infinity, // Set the desired width
-          child: Card(
-            child: Center(
-              child: ListTile(
-                leading: Icon(
-                  icon!,
-                  color: AppColors.mainColor,
-                ), // Add your desired icon
-                title: Text(
-                  text!,
-                  style: TextStyle(
-                    fontSize: Dimensions.font16,
-                    fontWeight: FontWeight.bold,
-                  ),
+      onTap: onPressed as void Function()?,
+      child: SizedBox(
+        height: Dimensions.height60,
+        width: double.infinity, 
+        child: Card(
+          child: Center(
+            child: ListTile(
+              leading: Icon(
+                icon!,
+                color: AppColors.mainColor,
+              ),
+              title: Text(
+                text!,
+                style: TextStyle(
+                  fontSize: Dimensions.font16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
-        ));
+        ),
+      )
+    );
   }
 }

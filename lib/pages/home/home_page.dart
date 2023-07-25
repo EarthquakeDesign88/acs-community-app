@@ -1,6 +1,6 @@
-import 'package:acs_community/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:acs_community/widgets/menu_template.dart';
+import 'package:acs_community/utils/constants.dart';
+import 'package:acs_community/pages/home/components/menu_template.dart';
 import 'package:acs_community/widgets/bottom_navbar.dart';
 
 class HomePage extends StatefulWidget {

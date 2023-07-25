@@ -266,7 +266,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     InkWell(
                       onTap: () {
@@ -300,7 +300,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     InkWell(
                       onTap: () {
@@ -333,7 +333,7 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                     ),
-                    SizedBox(height: Dimensions.height10),
+                    // SizedBox(height: Dimensions.height10),
                   ],
                 )),
             SizedBox(height: Dimensions.height10),
@@ -387,7 +387,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     InkWell(
                       onTap: () {
@@ -411,8 +411,9 @@ class _BodyState extends State<Body> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   BigText(
-                                      text: "คำถามที่พบบ่อย",
-                                      size: Dimensions.font14),
+                                    text: "คำถามที่พบบ่อย",
+                                    size: Dimensions.font14
+                                  ),
                                 ],
                               ),
                             )
@@ -421,19 +422,20 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     Padding(
                       padding: EdgeInsets.only(left: Dimensions.width20),
                       child: Row(
                         children: [
                           CustomIcon(
-                              height: Dimensions.width40,
-                              width: Dimensions.width40,
-                              bgColor: AppColors.secondaryColor,
-                              iconColor: AppColors.mainColor,
-                              icon: Icons.language,
-                              shape: 'circle'),
+                            height: Dimensions.width40,
+                            width: Dimensions.width40,
+                            bgColor: AppColors.secondaryColor,
+                            iconColor: AppColors.mainColor,
+                            icon: Icons.language,
+                            shape: 'circle'
+                          ),
                           SizedBox(width: Dimensions.width20),
                           Expanded(
                             child: Column(
@@ -477,7 +479,7 @@ class _BodyState extends State<Body> {
                     //   ),
                     // ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     InkWell(
                       onTap: () {
@@ -488,12 +490,13 @@ class _BodyState extends State<Body> {
                         child: Row(
                           children: [
                             CustomIcon(
-                                height: Dimensions.width40,
-                                width: Dimensions.width40,
-                                bgColor: AppColors.secondaryColor,
-                                iconColor: AppColors.mainColor,
-                                icon: Icons.security,
-                                shape: 'circle'),
+                              height: Dimensions.width40,
+                              width: Dimensions.width40,
+                              bgColor: AppColors.secondaryColor,
+                              iconColor: AppColors.mainColor,
+                              icon: Icons.security,
+                              shape: 'circle'
+                            ),
                             SizedBox(width: Dimensions.width20),
                             Expanded(
                               child: Column(
@@ -501,8 +504,9 @@ class _BodyState extends State<Body> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   BigText(
-                                      text: "นโยบายความเป็นส่วนตัว",
-                                      size: Dimensions.font14),
+                                    text: "นโยบายความเป็นส่วนตัว",
+                                    size: Dimensions.font14
+                                  ),
                                 ],
                               ),
                             )
@@ -511,7 +515,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     InkWell(
                       onTap: () {
@@ -522,12 +526,13 @@ class _BodyState extends State<Body> {
                         child: Row(
                           children: [
                             CustomIcon(
-                                height: Dimensions.width40,
-                                width: Dimensions.width40,
-                                bgColor: AppColors.secondaryColor,
-                                iconColor: AppColors.mainColor,
-                                icon: Icons.list,
-                                shape: 'circle'),
+                              height: Dimensions.width40,
+                              width: Dimensions.width40,
+                              bgColor: AppColors.secondaryColor,
+                              iconColor: AppColors.mainColor,
+                              icon: Icons.list,
+                              shape: 'circle'
+                            ),
                             SizedBox(width: Dimensions.width20),
                             Expanded(
                               child: Column(
@@ -556,12 +561,13 @@ class _BodyState extends State<Body> {
                         child: Row(
                           children: [
                             CustomIcon(
-                                height: Dimensions.width40,
-                                width: Dimensions.width40,
-                                bgColor: AppColors.secondaryColor,
-                                iconColor: AppColors.mainColor,
-                                icon: Icons.reviews,
-                                shape: 'circle'),
+                              height: Dimensions.width40,
+                              width: Dimensions.width40,
+                              bgColor: AppColors.secondaryColor,
+                              iconColor: AppColors.mainColor,
+                              icon: Icons.reviews,
+                              shape: 'circle'
+                            ),
                             SizedBox(width: Dimensions.width20),
                             Expanded(
                               child: Column(
@@ -569,8 +575,9 @@ class _BodyState extends State<Body> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   BigText(
-                                      text: "ข้อเสนอแนะสำหรับผู้พัฒนาแอปฯ",
-                                      size: Dimensions.font14),
+                                    text: "ข้อเสนอแนะสำหรับผู้พัฒนาแอปฯ",
+                                    size: Dimensions.font14
+                                  ),
                                 ],
                               ),
                             )
@@ -579,19 +586,20 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     Padding(
                       padding: EdgeInsets.only(left: Dimensions.width20),
                       child: Row(
                         children: [
                           CustomIcon(
-                              height: Dimensions.width40,
-                              width: Dimensions.width40,
-                              bgColor: AppColors.secondaryColor,
-                              iconColor: AppColors.mainColor,
-                              icon: Icons.home_filled,
-                              shape: 'circle'),
+                            height: Dimensions.width40,
+                            width: Dimensions.width40,
+                            bgColor: AppColors.secondaryColor,
+                            iconColor: AppColors.mainColor,
+                            icon: Icons.home_filled,
+                            shape: 'circle'
+                          ),
                           SizedBox(width: Dimensions.width20),
                           Expanded(
                             child: Column(
@@ -599,8 +607,9 @@ class _BodyState extends State<Body> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BigText(
-                                    text: "ติดต่อทีมงานผู้พัฒนาแอปฯ",
-                                    size: Dimensions.font14),
+                                  text: "ติดต่อทีมงานผู้พัฒนาแอปฯ",
+                                  size: Dimensions.font14
+                                ),
                               ],
                             ),
                           )
@@ -608,7 +617,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height2),
-                    BottomLine(),
+                    const BottomLine(),
                     SizedBox(height: Dimensions.height2),
                     Padding(
                       padding: EdgeInsets.only(left: Dimensions.width20),
@@ -619,12 +628,13 @@ class _BodyState extends State<Body> {
                         child: Row(
                           children: [
                             CustomIcon(
-                                height: Dimensions.width40,
-                                width: Dimensions.width40,
-                                bgColor: AppColors.secondaryColor,
-                                iconColor: AppColors.mainColor,
-                                icon: Icons.exit_to_app,
-                                shape: 'circle'),
+                              height: Dimensions.width40,
+                              width: Dimensions.width40,
+                              bgColor: AppColors.secondaryColor,
+                              iconColor: AppColors.mainColor,
+                              icon: Icons.exit_to_app,
+                              shape: 'circle'
+                            ),
                             SizedBox(width: Dimensions.width20),
                             Expanded(
                               child: Column(
@@ -632,8 +642,9 @@ class _BodyState extends State<Body> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   BigText(
-                                      text: "ออกจากระบบ",
-                                      size: Dimensions.font14),
+                                    text: "ออกจากระบบ",
+                                    size: Dimensions.font14
+                                  ),
                                 ],
                               ),
                             )
@@ -642,7 +653,8 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                   ],
-                )),
+                )
+              ),
           ],
         )
       ],

@@ -2,30 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
+import 'package:get/get.dart';
+import 'package:acs_community/controllers/facility_controller.dart';
+import 'package:acs_community/models/facility_model.dart';
 
 class BodyFacilityBooking extends StatelessWidget {
-  const BodyFacilityBooking({Key? key}) : super(key: key);
+  final int facilityId;
+
+  const BodyFacilityBooking({Key? key, required this.facilityId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
+    final FacilityController _facilityController = Get.find();
+    final Facility? facility = _facilityController.bookingById(facilityId);
+
+    return Stack(
+      children: [
       Container(
         width: MediaQuery.of(context).size.width,
         height: 200,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/s1.jpg'),
+            image: NetworkImage(
+              facility?.imagePath ??
+                  'https://images.unsplash.com/photo-1594322436404-5a0526db4d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1129&q=80',
+            ),
             fit: BoxFit.cover,
           ),
         ),
         child: Padding(
           padding: EdgeInsets.only(bottom: Dimensions.height10),
           child: Align(
-              alignment: Alignment.bottomCenter,
-              child: BigText(
-                  text: "ห้องสมุด",
-                  size: Dimensions.font26,
-                  color: AppColors.whiteColor)),
+            alignment: Alignment.bottomCenter,
+            child: BigText(
+              text: facility?.title ?? 'ไม่พบข้อมูล',
+              size: Dimensions.font26,
+              color: AppColors.whiteColor
+            )
+          ),
         ),
       ),
       SizedBox(height: Dimensions.height15),
@@ -34,30 +48,24 @@ class BodyFacilityBooking extends StatelessWidget {
         child: Column(children: [
           SizedBox(height: Dimensions.height10),
           const Align(
-              alignment: Alignment.center,
-              child: BigText(
-                  text: "ระเบียบการใช้บริการ",
-                  size: 22,
-                  color: AppColors.blackColor)),
-          SizedBox(height: Dimensions.height10),
-          Padding(
-            padding: EdgeInsets.only(left: Dimensions.width15),
-            child: const Align(
-                alignment: Alignment.bottomLeft,
-                child: SmallText(
-                    text:
-                        "1.ห้ามนำเครื่องดื่ม, อาหาร เข้ามารับประทานในห้องสมุด",
-                    color: AppColors.blackColor)),
+            alignment: Alignment.center,
+            child: BigText(
+                text: "ระเบียบการใช้บริการ",
+                size: 22,
+                color: AppColors.blackColor
+            )
           ),
           SizedBox(height: Dimensions.height10),
           Padding(
             padding: EdgeInsets.only(left: Dimensions.width15),
-            child: const Align(
-                alignment: Alignment.bottomLeft,
-                child: SmallText(
-                    text: "2.งดใช้เสียง", color: AppColors.blackColor)),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: SmallText(
+                text: facility?.rule ?? '',
+                color: AppColors.blackColor
+              )
+            ),
           ),
-          SizedBox(height: Dimensions.height10),
         ]),
       )
     ]);

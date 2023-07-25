@@ -14,28 +14,30 @@ class _FacilityPageState extends State<FacilityPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: AppColors.whiteColor,
-            iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
-            centerTitle: true,
-            title: BigText(text: "จองส่วนกลาง", size: Dimensions.font20),
-            bottom: TabBar(
-                labelColor: AppColors.blackColor,
-                indicatorColor: AppColors.mainColor,
-                tabs: [
-                  Tab(
-                      child:
-                          BigText(text: "ส่วนกลาง", size: Dimensions.font18)),
-                  Tab(
-                      child: BigText(
-                          text: "การจองของฉัน", size: Dimensions.font18)), //
-                ]),
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: AppColors.whiteColor,
+          iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
+          centerTitle: true,
+          title: BigText(text: "จองส่วนกลาง", size: Dimensions.font20),
+          bottom: TabBar(
+            labelColor: AppColors.blackColor,
+            indicatorColor: AppColors.mainColor,
+            tabs: [
+              Tab(
+                child: BigText(text: "ส่วนกลาง", size: Dimensions.font18)
+              ),
+              Tab(
+                child: BigText(text: "การจองของฉัน", size: Dimensions.font18)
+              ), //
+            ]
           ),
-          backgroundColor: AppColors.menuColor,
-          body: const BodyFacility(),
-        ));
+        ),
+        backgroundColor: AppColors.menuColor,
+        body: BodyFacility(),
+      )
+    );
   }
 }

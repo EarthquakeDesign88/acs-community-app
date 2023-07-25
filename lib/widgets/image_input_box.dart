@@ -4,6 +4,17 @@ import 'package:acs_community/utils/constants.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageInputBox extends StatefulWidget {
+  final double height;
+  final double width;
+  final double iconSize;
+
+  ImageInputBox({
+    Key? key,
+    this.height = 80,
+    this.width = 80,
+    this.iconSize = 35,
+  }) : super(key: key);
+
   @override
   _ImageInputBoxState createState() => _ImageInputBoxState();
 }
@@ -33,17 +44,18 @@ class _ImageInputBoxState extends State<ImageInputBox> {
         GestureDetector(
           onTap: _pickImages,
           child: Container(
-              height: Dimensions.height80,
-              width: Dimensions.width80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius15),
-                color: Colors.grey[200],
-              ),
-              child: const Icon(
-                Icons.image,
-                color: Colors.grey,
-                size: 35,
-              )),
+            height: widget.height,
+            width: widget.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(Dimensions.radius15),
+              color: Colors.grey[200],
+            ),
+            child: Icon(
+              Icons.image,
+              color: Colors.grey,
+              size: widget.iconSize,
+            ),
+          ),
         ),
         SizedBox(width: Dimensions.width15),
         Expanded(
@@ -51,15 +63,17 @@ class _ImageInputBoxState extends State<ImageInputBox> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: _images
-                  .map((image) => Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Image.file(
-                          image,
-                          width: 20,
-                          height: 20,
-                          fit: BoxFit.cover,
-                        ),
-                      ))
+                  .map(
+                    (image) => Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Image.file(
+                        image,
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
                   .toList(),
             ),
           ),
