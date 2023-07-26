@@ -42,7 +42,6 @@ class _BodyMyUnitState extends State<BodyMyUnit> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          // title: Center(child: BigText(text: "แก้ไขบทบาท", size: 22)),
           content: Container(
             width: 400,
             height: 280,
@@ -85,48 +84,51 @@ class _BodyMyUnitState extends State<BodyMyUnit> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                        height: 40,
-                        width: 120,
-                        child: MaterialButton(
-                            height: Dimensions.height50,
-                            color: AppColors.whiteColor,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius10),
-                              side: BorderSide(
-                                color: AppColors.greyColor,
-                                width: Dimensions.width2,
-                              ),
+                      height: 40,
+                      width: 120,
+                      child: MaterialButton(
+                          height: Dimensions.height50,
+                          color: AppColors.whiteColor,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius10),
+                            side: BorderSide(
+                              color: AppColors.greyColor,
+                              width: Dimensions.width2,
                             ),
-                            child: BigText(
-                                text: "ยกเลิก",
-                                size: Dimensions.font18,
-                                color: AppColors.blackColor))),
-                    SizedBox(
-                        height: 40,
-                        width: 120,
-                        child: MaterialButton(
-                            height: Dimensions.height50,
-                            color: const Color.fromARGB(255, 245, 102, 102),
-                            onPressed: () {},
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius10),
-                              side: const BorderSide(
-                                color: Color.fromARGB(255, 245, 102, 102),
-                                width: 2.0,
-                              ),
-                            ),
-                            child: BigText(
-                              text: "ยืนยัน",
-                              size: Dimensions.font18,
-                              color: AppColors.whiteColor
-                            )
+                          ),
+                          child: BigText(
+                            text: "ยกเลิก",
+                            size: Dimensions.font18,
+                            color: AppColors.blackColor
                           )
                         )
+                      ),
+                      SizedBox(
+                        height: 40,
+                        width: 120,
+                        child: MaterialButton(
+                          height: Dimensions.height50,
+                          color: const Color.fromARGB(255, 245, 102, 102),
+                          onPressed: () {},
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius10),
+                            side: const BorderSide(
+                              color: Color.fromARGB(255, 245, 102, 102),
+                              width: 2.0,
+                            ),
+                          ),
+                          child: BigText(
+                            text: "ยืนยัน",
+                            size: Dimensions.font18,
+                            color: AppColors.whiteColor
+                          )
+                        )
+                      )
                   ],
                 )
               ],
@@ -180,14 +182,16 @@ class _BodyMyUnitState extends State<BodyMyUnit> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               BigText(
-                                  text: "แก้ไขบทบาท",
-                                  color: AppColors.blackColor,
-                                  size: Dimensions.font16),
+                                text: "แก้ไขบทบาท",
+                                color: AppColors.blackColor,
+                                size: Dimensions.font16
+                              ),
                               SizedBox(height: Dimensions.height5),
                               SmallText(
-                                  text:
-                                      "เจ้าของกรรมสิทธิ์, ผู้ร่วมอยู่อาศัย, ผู้เช่า",
-                                  size: Dimensions.font14)
+                                text:
+                                    "เจ้าของกรรมสิทธิ์, ผู้ร่วมอยู่อาศัย, ผู้เช่า",
+                                size: Dimensions.font14
+                              )
                             ],
                           )
                         ]),
@@ -200,37 +204,40 @@ class _BodyMyUnitState extends State<BodyMyUnit> {
                         },
                         child: Row(children: [
                           Container(
-                              height: Dimensions.height40,
-                              width: Dimensions.width40,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.mainColor,
-                              ),
-                              child: Icon(
-                                Icons.home,
-                                color: AppColors.whiteColor,
-                                size: Dimensions.iconSize30,
-                              )),
+                            height: Dimensions.height40,
+                            width: Dimensions.width40,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.mainColor,
+                            ),
+                            child: Icon(
+                              Icons.home,
+                              color: AppColors.whiteColor,
+                              size: Dimensions.iconSize30,
+                            )
+                          ),
                           SizedBox(width: Dimensions.width15),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               BigText(
-                                  text: "ออกจากบ้านเลขที่นี้",
-                                  color: AppColors.blackColor,
-                                  size: Dimensions.font16),
+                                text: "ออกจากบ้านเลขที่นี้",
+                                color: AppColors.blackColor,
+                                size: Dimensions.font16
+                              ),
                               SizedBox(height: Dimensions.height5),
                               SmallText(
-                                  text:
-                                      "ท่านจะไม่ได้อยู่ในบ้านเลขที่นี้อีกต่อไป",
-                                  size: Dimensions.font14)
+                                text: "ท่านจะไม่ได้อยู่ในบ้านเลขที่นี้อีกต่อไป",
+                                size: Dimensions.font14
+                              )
                             ],
                           )
                         ]),
                       ),
                     ],
-                  )),
+                  )
+                ),
             ],
           ),
         );

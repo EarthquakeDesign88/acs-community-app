@@ -16,7 +16,7 @@ class PropertyManagementPage extends StatelessWidget {
         centerTitle: true,
         title: BigText(text: "ข้อมูลนิติ", size: Dimensions.font20),
       ),
-      body: const BodyPropertyManagement(),
+      body: BodyPropertyManagement(),
     );
   }
 }

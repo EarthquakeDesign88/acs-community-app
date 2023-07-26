@@ -4,7 +4,7 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/pages/payment_reminder/components/body_payment_reminder.dart';
 
 class PaymentReminderPage extends StatelessWidget {
-  const PaymentReminderPage({super.key});
+  const PaymentReminderPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -142,45 +142,51 @@ class _EditRoleContentState extends State<EditRoleContent> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                      height: 45,
-                      width: 120,
-                      child: MaterialButton(
-                          height: Dimensions.height50,
-                          color: AppColors.whiteColor,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius10),
-                            side: BorderSide(
-                              color: AppColors.greyColor,
-                              width: Dimensions.width2,
-                            ),
-                          ),
-                          child: BigText(
-                              text: "ยกเลิก",
-                              size: Dimensions.font18,
-                              color: AppColors.blackColor))),
+                    height: 45,
+                    width: 120,
+                    child: MaterialButton(
+                      height: Dimensions.height50,
+                      color: AppColors.whiteColor,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius10),
+                        side: BorderSide(
+                          color: AppColors.greyColor,
+                          width: Dimensions.width2,
+                        ),
+                      ),
+                      child: BigText(
+                        text: "ยกเลิก",
+                        size: Dimensions.font18,
+                        color: AppColors.blackColor
+                      )
+                    )
+                  ),
                   SizedBox(
-                      height: 45,
-                      width: 120,
-                      child: MaterialButton(
-                          height: Dimensions.height50,
+                    height: 45,
+                    width: 120,
+                    child: MaterialButton(
+                      height: Dimensions.height50,
+                      color: AppColors.mainColor,
+                      onPressed: () {},
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius10),
+                        side: BorderSide(
                           color: AppColors.mainColor,
-                          onPressed: () {},
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius10),
-                            side: BorderSide(
-                              color: AppColors.mainColor,
-                              width: Dimensions.width2,
-                            ),
-                          ),
-                          child: BigText(
-                              text: "ยืนยัน",
-                              size: Dimensions.font18,
-                              color: AppColors.whiteColor)))
+                          width: Dimensions.width2,
+                        ),
+                      ),
+                      child: BigText(
+                        text: "ยืนยัน",
+                        size: Dimensions.font18,
+                        color: AppColors.whiteColor
+                      )
+                    )
+                  )
                 ],
               )
             ],

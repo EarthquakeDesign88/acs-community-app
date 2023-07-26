@@ -22,9 +22,10 @@ class BodyAttachProofPayment extends StatelessWidget {
             children: [
               const SmallText(text: "ชุมชน", color: AppColors.blackColor),
               BigText(
-                  text: "ACS Community",
-                  size: Dimensions.font16,
-                  color: AppColors.blackColor),
+                text: "ACS Community",
+                size: Dimensions.font16,
+                color: AppColors.blackColor
+              ),
             ],
           ),
         ),
@@ -38,9 +39,10 @@ class BodyAttachProofPayment extends StatelessWidget {
             children: [
               const SmallText(text: "บ้านเลขที่", color: AppColors.blackColor),
               BigText(
-                  text: "3300/25",
-                  size: Dimensions.font16,
-                  color: AppColors.blackColor),
+                text: "3300/25",
+                size: Dimensions.font16,
+                color: AppColors.blackColor
+              ),
             ],
           ),
         ),
@@ -54,9 +56,10 @@ class BodyAttachProofPayment extends StatelessWidget {
             children: [
               const SmallText(text: "รายการ", color: AppColors.blackColor),
               BigText(
-                  text: "ค่าส่วนกลาง",
-                  size: Dimensions.font16,
-                  color: AppColors.blackColor),
+                text: "ค่าส่วนกลาง",
+                size: Dimensions.font16,
+                color: AppColors.blackColor
+              ),
             ],
           ),
         ),
@@ -71,9 +74,10 @@ class BodyAttachProofPayment extends StatelessWidget {
               const SmallText(
                   text: "เจ้าของกรรมสิทธิ์", color: AppColors.blackColor),
               BigText(
-                  text: "นายทดสอบ ระบบ",
-                  size: Dimensions.font16,
-                  color: AppColors.blackColor),
+                text: "นายทดสอบ ระบบ",
+                size: Dimensions.font16,
+                color: AppColors.blackColor
+              ),
             ],
           ),
         ),
@@ -88,9 +92,10 @@ class BodyAttachProofPayment extends StatelessWidget {
               const SmallText(
                   text: "ยอดรวมที่ต้องชำระ (บาท)", color: AppColors.blackColor),
               BigText(
-                  text: "12,000.50",
-                  size: Dimensions.font16,
-                  color: AppColors.blackColor),
+                text: "12,000.50",
+                size: Dimensions.font16,
+                color: AppColors.blackColor
+              ),
             ],
           ),
         ),
@@ -106,10 +111,10 @@ class BodyAttachProofPayment extends StatelessWidget {
         SizedBox(height: Dimensions.height20),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width30),
-          child: Stack(
+          child: const Stack(
             children: [
               ImageInputBox(height: 200, width: 330, iconSize: 80),
-              const Positioned(
+              Positioned(
                 top: 140,
                 right: 35,
                 child: CustomIcon(

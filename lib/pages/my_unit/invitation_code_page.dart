@@ -10,12 +10,15 @@ class InvitationCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: AppColors.whiteColor,
-          iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
-          centerTitle: true,
-          title: BigText(
-              text: "รหัสเชิญผู้อยู่อาศัยใหม่", size: Dimensions.font20)),
+        elevation: 0,
+        backgroundColor: AppColors.whiteColor,
+        iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
+        centerTitle: true,
+        title: BigText(
+          text: "รหัสเชิญผู้อยู่อาศัยใหม่", 
+          size: Dimensions.font20
+        )
+      ),
       backgroundColor: AppColors.whiteColor,
       body: const BodyInvitationCode(),
     );

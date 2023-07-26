@@ -23,9 +23,10 @@ class BodyPaymentReminderDetail extends StatelessWidget {
               BigText(text: "ยอดรวมที่ต้องชำระ (บาท)", size: Dimensions.font20),
               SizedBox(height: Dimensions.height10),
               BigText(
-                  text: "12,000.50",
-                  size: Dimensions.font22,
-                  color: AppColors.mainColor),
+                text: "12,000.50",
+                size: Dimensions.font22,
+                color: AppColors.mainColor
+              ),
               SizedBox(height: Dimensions.height10),
               const BottomLine(),
             ],
@@ -300,9 +301,10 @@ class BodyPaymentReminderDetail extends StatelessWidget {
         SizedBox(height: Dimensions.height10),
         Center(
           child: BigText(
-              text: "*อย่าลืมแนบหลักฐานการชำระเงินนะคะ",
-              size: Dimensions.font16,
-              color: Colors.redAccent),
+            text: "*อย่าลืมแนบหลักฐานการชำระเงินนะคะ",
+            size: Dimensions.font16,
+            color: Colors.redAccent
+          ),
         ),
         SizedBox(height: Dimensions.height10),
         MainButton(

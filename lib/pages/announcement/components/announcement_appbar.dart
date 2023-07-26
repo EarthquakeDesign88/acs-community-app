@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
+import 'package:get/get.dart';
+import 'package:acs_community/controllers/announcement_controller.dart';
 
 class AnnouncementAppBar extends StatelessWidget
-  implements PreferredSizeWidget {
+    implements PreferredSizeWidget {
   final int currentIndex;
   final Function(int) onTabChanged;
 
-  const AnnouncementAppBar({
+  AnnouncementAppBar({
     required this.currentIndex,
     required this.onTabChanged,
   });
-  
 
   @override
-  Size get preferredSize =>
-      const Size.fromHeight(100); //56.0 For Android or 44.0 For IOS
+  Size get preferredSize => const Size.fromHeight(100); //56.0 For Android or 44.0 For IOS
+  final AnnouncementController _announcementController = Get.put(AnnouncementController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +38,12 @@ class AnnouncementAppBar extends StatelessWidget
           onPressed: () {},
         ),
       ],
-      bottom: const TabBar(
+      bottom: TabBar(
         labelColor: AppColors.blackColor,
         indicatorColor: AppColors.mainColor,
         tabs: [
-          Tab(text: 'ประกาศสำคัญ'),
-          Tab(text: 'ข่าวสารทั่วไป'),
+          for (final announcementType in _announcementController.announcementTypesTH)
+            Tab(child: BigText(text: announcementType, size: Dimensions.font18)),
         ],
       ),
     );

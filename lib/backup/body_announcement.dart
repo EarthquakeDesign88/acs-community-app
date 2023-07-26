@@ -4,7 +4,7 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/routes/route_helper.dart';
 import 'package:get/get.dart';
-import 'package:acs_community/controllers/announcement_controller.dart';
+import 'package:acs_community/backup/announcement_controller.dart';
 
 class BodyAnnouncement extends StatelessWidget {
   // BodyAnnouncement({Key? key}) : super(key: key);

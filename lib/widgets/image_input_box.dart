@@ -8,7 +8,7 @@ class ImageInputBox extends StatefulWidget {
   final double width;
   final double iconSize;
 
-  ImageInputBox({
+  const ImageInputBox({
     Key? key,
     this.height = 80,
     this.width = 80,

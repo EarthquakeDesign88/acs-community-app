@@ -35,9 +35,10 @@ class _BodyInvitationCodeState extends State<BodyInvitationCode> {
               BigText(text: "บ้านเลขที่ 3300/25", size: Dimensions.font26),
               SizedBox(height: Dimensions.height15),
               BigText(
-                  text: "Elephant Tower",
-                  size: Dimensions.font18,
-                  color: AppColors.blackColor),
+                text: "Elephant Tower",
+                size: Dimensions.font18,
+                color: AppColors.blackColor
+              ),
               SizedBox(
                 width: 300,
                 height: 300,
@@ -51,33 +52,34 @@ class _BodyInvitationCodeState extends State<BodyInvitationCode> {
               ),
               SizedBox(height: Dimensions.height15),
               Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 209, 245, 233),
-                    borderRadius: BorderRadius.circular(Dimensions.radius10),
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: Dimensions.height10),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: inviteCode.split('').map((char) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: Dimensions.width5),
-                                child: Text(
-                                  char,
-                                  style: const TextStyle(
-                                      fontSize: 30,
-                                      color: AppColors.mainColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ]),
-                  )),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 209, 245, 233),
+                  borderRadius: BorderRadius.circular(Dimensions.radius10),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: Dimensions.height10),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: inviteCode.split('').map((char) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: Dimensions.width5),
+                              child: Text(
+                                char,
+                                style: const TextStyle(
+                                    fontSize: 30,
+                                    color: AppColors.mainColor,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ]),
+                )
+              ),
               SizedBox(height: Dimensions.height15),
               RichText(
                 text: TextSpan(
@@ -92,9 +94,10 @@ class _BodyInvitationCodeState extends State<BodyInvitationCode> {
                     TextSpan(
                       text: '27 กรกฎาคม 2566',
                       style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: Dimensions.font16,
-                          fontWeight: FontWeight.bold),
+                        color: Colors.orange,
+                        fontSize: Dimensions.font16,
+                        fontWeight: FontWeight.bold
+                      ),
                     ),
                   ],
                 ),
@@ -118,11 +121,13 @@ class _BodyInvitationCodeState extends State<BodyInvitationCode> {
                       ),
                     ),
                     child: BigText(
-                        text: isCopied ? "คัดลอกแล้ว" : "คัดลอก",
-                        size: Dimensions.font18,
-                        color: isCopied
-                            ? AppColors.darkGreyColor
-                            : AppColors.whiteColor)),
+                      text: isCopied ? "คัดลอกแล้ว" : "คัดลอก",
+                      size: Dimensions.font18,
+                      color: isCopied
+                          ? AppColors.darkGreyColor
+                          : AppColors.whiteColor
+                    )
+                ),
               )
             ]),
           ),

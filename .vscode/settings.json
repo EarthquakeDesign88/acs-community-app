@@ -1,8 +1,11 @@
 {
     "cmake.sourceDirectory": "D:/flutter_project/acs_community/linux",
     "cSpell.words": [
+        "datetime",
         "จองส่วนกลาง",
         "แจ้งซ่อม",
-        "แจ้งเตือนค่าใช้จ่าย"
+        "แจ้งเตือนค่าใช้จ่าย",
+        "ระบบบริหารและจัดการภายใน",
+        "รับโดย"
     ]
 }

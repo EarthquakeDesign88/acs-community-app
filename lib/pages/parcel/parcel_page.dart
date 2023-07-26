@@ -3,6 +3,8 @@ import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/footer.dart';
 import 'package:acs_community/pages/parcel/components/body_parcel.dart';
+import 'package:get/get.dart';
+import 'package:acs_community/controllers/parcel_controller.dart';
 
 class ParcelPage extends StatefulWidget {
   const ParcelPage({Key? key}) : super(key: key);
@@ -12,10 +14,12 @@ class ParcelPage extends StatefulWidget {
 }
 
 class _ParcelPageState extends State<ParcelPage> {
+  final ParcelController _parcelController = Get.put(ParcelController());
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: _parcelController.parcelStatusTH.length,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -27,16 +31,12 @@ class _ParcelPageState extends State<ParcelPage> {
             labelColor: AppColors.blackColor,
             indicatorColor: AppColors.mainColor,
             tabs: [
-              Tab(
-                child: BigText(
-                  text: "พัสดุใหม่", size: Dimensions.font18
-                )
-              ),
-              Tab(
-                child: BigText(
-                  text: "ประวัติพัสดุ", size: Dimensions.font18
-                )
-              ), //
+              for (final parcelStatus in _parcelController.parcelStatusTH)
+                Tab(
+                  child: BigText(
+                    text: parcelStatus, size: Dimensions.font18
+                  )
+                ),
             ]
           ),
         ),

@@ -14,14 +14,16 @@ class _AddUnitPageState extends State<AddUnitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            elevation: 0,
-            backgroundColor: AppColors.whiteColor,
-            iconTheme: const IconThemeData(
-              color: AppColors.darkGreyColor,
-            ),
-            centerTitle: true,
-            title: BigText(text: "เพิ่มห้อง", size: Dimensions.font20)),
-        body: const QRStepper());
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.whiteColor,
+        iconTheme: const IconThemeData(
+          color: AppColors.darkGreyColor,
+        ),
+        centerTitle: true,
+        title: BigText(text: "เพิ่มห้อง", size: Dimensions.font20)
+      ),
+      body: const QRStepper()
+    );
   }
 }

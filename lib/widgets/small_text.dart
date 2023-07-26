@@ -20,7 +20,6 @@ class SmallText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        // fontFamily: 'Roboto',
         color: color,
         fontSize: size == 0 ? Dimensions.font16 : size,
         height: height

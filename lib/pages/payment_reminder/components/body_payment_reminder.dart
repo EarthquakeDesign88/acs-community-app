@@ -1,4 +1,3 @@
-import 'package:acs_community/routes/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
@@ -52,9 +51,10 @@ class BodyPaymentReminder extends StatelessWidget {
                         child: Row(
                           children: [
                             BigText(
-                                text: "ดูการชำระเงิน/แนบหลักฐาน",
-                                color: AppColors.mainColor,
-                                size: Dimensions.font16),
+                              text: "ดูการชำระเงิน/แนบหลักฐาน",
+                              color: AppColors.mainColor,
+                              size: Dimensions.font16
+                            ),
                             CustomIcon(
                               height: Dimensions.width20,
                               width: Dimensions.width20,

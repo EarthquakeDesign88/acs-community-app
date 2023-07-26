@@ -3,12 +3,20 @@ import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/widgets/bottom_line.dart';
+import 'package:get/get.dart';
+import 'package:acs_community/controllers/property_management_controller.dart';
+import 'package:acs_community/models/property_management_model.dart';
 
 class BodyPropertyManagement extends StatelessWidget {
-  const BodyPropertyManagement({Key? key}) : super(key: key);
+  // const BodyPropertyManagement({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final PropertyManagementController _propertyManagementController =
+        Get.put(PropertyManagementController());
+    final PropertyManagement property =
+        _propertyManagementController.getPropertyManagementDetails();
+
     return Column(
       children: [
         SizedBox(height: Dimensions.height30),
@@ -53,7 +61,7 @@ class BodyPropertyManagement extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BigText(
-                            text: "elephant_tower", size: Dimensions.font14),
+                            text: property.contactLine, size: Dimensions.font14),
                         SizedBox(height: Dimensions.height5),
                         SmallText(
                             text: "Line Official Account หรือ Line@ ของ",
@@ -110,7 +118,9 @@ class BodyPropertyManagement extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BigText(text: "029374961", size: Dimensions.font14),
+                        BigText(
+                            text: property.contactNumber,
+                            size: Dimensions.font14),
                         SizedBox(height: Dimensions.height5),
                         SmallText(
                             text: "เบอร์โทรศัพท์หลักของนิติบุคคล",
@@ -167,7 +177,7 @@ class BodyPropertyManagement extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BigText(
-                            text: "elephant_tower@gmail.com",
+                            text: property.contactEmail,
                             size: Dimensions.font14),
                         SizedBox(height: Dimensions.height5),
                         SmallText(

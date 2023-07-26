@@ -6,6 +6,7 @@ class AppConstants {
   // API
   static const String baseUrl = "http://localhost:3000";
   static const String generateQrCodeUri = "/api/generate_qrcode";
+  static const String fetchAnnouncement = "/api/announcement";
 
   static const String token = "DBtoken";
 }

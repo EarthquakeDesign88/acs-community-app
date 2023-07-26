@@ -4,7 +4,7 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/pages/payment_reminder/components/body_attach_proof_payment.dart';
 
 class AttachProofPaymentPage extends StatelessWidget {
-  const AttachProofPaymentPage({super.key});
+  const AttachProofPaymentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
