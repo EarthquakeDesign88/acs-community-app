@@ -5,8 +5,8 @@ class Announcement {
   final String subtitle;
   final String type;
   final String date;
-  final String totalThank;
-  final String totalView;
+  final int totalThank;
+  final int totalView;
 
   Announcement({
     required this.id,
@@ -18,4 +18,18 @@ class Announcement {
     required this.totalThank,
     required this.totalView,
   });
+
+
+  factory Announcement.fromJson(Map<String, dynamic> json) {
+    return Announcement(
+      id: json['id'],
+      imagePath: json['imagePath'],
+      title: json['title'],
+      subtitle: json['subtitle'],
+      type: json['type'],
+      date: json['date'],
+      totalThank: json['totalThank'],
+      totalView: json['totalView'],
+    );
+  }
 }

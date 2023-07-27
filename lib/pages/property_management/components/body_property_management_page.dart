@@ -25,9 +25,10 @@ class BodyPropertyManagement extends StatelessWidget {
           child: Row(
             children: [
               SmallText(
-                  text: "ติดต่อ",
-                  color: AppColors.blackColor,
-                  size: Dimensions.font18)
+                text: "ติดต่อ",
+                color: AppColors.blackColor,
+                size: Dimensions.font18
+              )
             ],
           ),
         ),

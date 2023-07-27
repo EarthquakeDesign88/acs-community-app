@@ -7,64 +7,73 @@ import 'package:get/get.dart';
 import 'package:acs_community/controllers/phone_book_controller.dart';
 
 class BodyPhoneBook extends StatelessWidget {
-  // BodyPhoneBook({Key? key}) : super(key: key);
-
-  final PhoneBookController _phoneBookController = Get.put(PhoneBookController());
+  final PhoneBookController _phoneBookController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(children: [
-      for (final contactType in _phoneBookController.contactTypes)
-        ListView.builder(
-          itemCount: _phoneBookController.getContactCount(contactType),
-          itemBuilder: (context, index) {
-            final contact = _phoneBookController.getContactByType(contactType, index);
-            return Column(
-              children: [
-                Container(
-                  color: AppColors.whiteColor,
-                  child: Column(
-                    children: [
-                      SizedBox(height: Dimensions.height10),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: Dimensions.width15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+    _phoneBookController.fetchPhoneBooks();
+
+    return Obx(() {
+      if (_phoneBookController.phoneBookLists.isEmpty) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else {
+        return TabBarView(children: [
+          for (final contactType in _phoneBookController.contactTypes)
+            ListView.builder(
+              itemCount: _phoneBookController.getContactCount(contactType),
+              itemBuilder: (context, index) {
+                final contact =
+                    _phoneBookController.getContactByType(contactType, index);
+                return Column(
+                  children: [
+                    Container(
+                      color: AppColors.whiteColor,
+                      child: Column(
+                        children: [
+                          SizedBox(height: Dimensions.height10),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: Dimensions.width15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                BigText(
-                                  text: contact.contactName,
-                                  size: Dimensions.font16,
-                                  color: AppColors.darkGreyColor,
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    BigText(
+                                      text: contact.contactName,
+                                      size: Dimensions.font16,
+                                      color: AppColors.darkGreyColor,
+                                    ),
+                                    SizedBox(height: Dimensions.height5),
+                                    SmallText(
+                                      text: contact.contactNumber,
+                                      size: Dimensions.font16,
+                                      color: AppColors.mainColor,
+                                    )
+                                  ],
                                 ),
-                                SizedBox(height: Dimensions.height5),
-                                SmallText(
-                                  text: contact.contactNumber,
-                                  size: Dimensions.font16,
+                                const Icon(
+                                  Icons.phone,
                                   color: AppColors.mainColor,
-                                )
+                                ),
                               ],
                             ),
-                            const Icon(
-                              Icons.phone,
-                              color: AppColors.mainColor,
-                            ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(height: Dimensions.height10),
+                          const BottomLine(),
+                        ],
                       ),
-                      SizedBox(height: Dimensions.height10),
-                      const BottomLine(),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-    ]);
+                    ),
+                  ],
+                );
+              },
+            ),
+        ]);
+      }
+    });
   }
 }

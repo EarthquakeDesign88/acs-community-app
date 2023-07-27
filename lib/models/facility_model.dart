@@ -12,4 +12,15 @@ class Facility {
     required this.subtitle,
     required this.rule,
   });
+
+
+  factory Facility.fromJson(Map<String, dynamic> json) {
+    return Facility(
+      id: json['id'],
+      imagePath: json['imagePath'],
+      title: json['title'],
+      subtitle: json['subtitle'],
+      rule: json['rule'],
+    );
+  }
 }

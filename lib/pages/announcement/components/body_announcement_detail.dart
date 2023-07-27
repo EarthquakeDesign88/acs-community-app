@@ -74,7 +74,7 @@ class BodyAnnouncementDetail extends StatelessWidget {
                     ),
                     SizedBox(height: Dimensions.height5),
                     BigText(
-                      text: announcement?.totalThank ?? '0',
+                      text: announcement?.totalThank.toString() ?? '0',
                       size: Dimensions.font14,
                       color: AppColors.mainColor,
                     )
@@ -92,7 +92,7 @@ class BodyAnnouncementDetail extends StatelessWidget {
                     ),
                     SizedBox(height: Dimensions.height5),
                     BigText(
-                      text: announcement?.totalView ?? '0',
+                      text: announcement?.totalView.toString() ?? '0',
                       size: Dimensions.font14,
                       color: AppColors.mainColor,
                     )

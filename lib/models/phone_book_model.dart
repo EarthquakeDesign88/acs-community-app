@@ -2,7 +2,7 @@ class PhoneBook {
   final int id;
   final String contactName;
   final String contactNumber;
-  final String contactType; //Have 3 types 
+  final String contactType; //Have 3 types
 
   PhoneBook({
     required this.id,
@@ -10,4 +10,14 @@ class PhoneBook {
     required this.contactNumber,
     required this.contactType
   });
+
+
+  factory PhoneBook.fromJson(Map<String, dynamic> json) {
+    return PhoneBook(
+      id: json['id'],
+      contactName: json['contactName'],
+      contactNumber: json['contactNumber'],
+      contactType: json['contactType'],
+    );
+  }
 }
