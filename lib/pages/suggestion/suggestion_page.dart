@@ -10,19 +10,14 @@ class SuggestionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            elevation: 0,
-            backgroundColor: AppColors.whiteColor,
-            iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
-            centerTitle: true,
-            title: BigText(text: "ข้อเสนอแนะ", size: Dimensions.font20)),
-        backgroundColor: AppColors.whiteColor,
-        body: const BodySuggestion(),
-        bottomNavigationBar: const MainButton(
-          text: "ยืนยัน",
-          bgColor: AppColors.greyColor,
-          borderColor: AppColors.greyColor,
-          textColor: AppColors.darkGreyColor,
-        ));
+      appBar: AppBar(
+          elevation: 0,
+          backgroundColor: AppColors.whiteColor,
+          iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
+          centerTitle: true,
+          title: BigText(text: "ข้อเสนอแนะ", size: Dimensions.font20)),
+      backgroundColor: AppColors.whiteColor,
+      body: BodySuggestion(),
+    );
   }
 }

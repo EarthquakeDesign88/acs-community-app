@@ -3,6 +3,24 @@ import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/widgets/image_input_box.dart';
+import 'package:acs_community/widgets/main_button.dart';
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'dart:io';
+
+Future<http.Response> sendSuggestionData(
+  Map<String, dynamic> suggestionData) async {
+  final String apiUrl = 'http://10.0.2.2:3000/api/create_suggestion';
+  try {
+    final response = await http.post(Uri.parse(apiUrl), body: suggestionData);
+    return response;
+  } catch (e) {
+    // Handle other exceptions
+    print('Error sending suggestion data: $e');
+    throw e; // Rethrow the exception to handle it at the caller.
+  }
+}
 
 class BodySuggestion extends StatefulWidget {
   const BodySuggestion({Key? key}) : super(key: key);
@@ -16,6 +34,83 @@ class _BodySuggestionState extends State<BodySuggestion> {
   bool hasEnteredDetail = false;
   bool hasEnteredPhoneNumber = false;
   bool hasEnteredEmail = false;
+
+  final TextEditingController topicController = TextEditingController();
+  final TextEditingController detailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
+  late ImageInputBox imageInputBox;
+
+  List<File> _selectedImages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    imageInputBox = ImageInputBox(
+      // Initialize it here
+      onImagesChanged: (List<File> images) {
+        setState(() {
+          _selectedImages = images;
+        });
+      },
+    );
+  }
+
+  Future<void> _submitSuggestionData() async {
+    // Gather user inputs
+    String topic = topicController.text;
+    String detail = detailController.text;
+    String phoneNumber = phoneNumberController.text;
+    String email = emailController.text;
+    List<File> images = _selectedImages;
+
+    // Create the suggestion data map
+    Map<String, dynamic> suggestionData = {
+      'topic': topic,
+      'detail': detail,
+      'phoneNumber': phoneNumber,
+      'email': email,
+      // Convert the list of images to base64 strings before sending
+      'images':
+          images.map((image) => base64Encode(image.readAsBytesSync())).toList(),
+    };
+
+    void _showDialog(String title, String content) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+
+     try {
+      final response = await sendSuggestionData(suggestionData);
+      if (response.statusCode == 200) {
+        // API call successful, do something
+        print('API response: ${response.body}');
+
+        _showDialog('Success', 'Suggestion data sent successfully!');
+      } else {
+        _showDialog('Error', 'Failed to send suggestion data.');
+      }
+    } catch (e) {
+      // Handle other exceptions
+      print('Error sending suggestion data: $e');
+      _showDialog('Error', 'An error occurred while sending suggestion data.');
+    }
+  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +142,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
+                  controller: topicController,
                   decoration: const InputDecoration(
                     hintText: 'พิมพ์หัวข้อข้อเสนอแนะ',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
@@ -79,6 +175,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
+                  controller: detailController,
                   decoration: const InputDecoration(
                     hintText: 'พิมพ์รายละเอียดข้อเสนอแนะ',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
@@ -116,7 +213,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
               ],
             ),
             SizedBox(height: Dimensions.height10),
-            ImageInputBox(),
+            imageInputBox,
             SizedBox(height: Dimensions.height10),
             Row(
               children: [
@@ -135,6 +232,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
+                  controller: phoneNumberController,
                   decoration: const InputDecoration(
                     hintText: 'พิมพ์เบอร์โทรศัพท์',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
@@ -165,6 +263,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
+                  controller: emailController,
                   decoration: const InputDecoration(
                     hintText: 'พิมพ์อีเมลของคุณ',
                     hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
@@ -178,6 +277,21 @@ class _BodySuggestionState extends State<BodySuggestion> {
                 ),
               ),
             ),
+            GestureDetector(
+              onTap: () async {
+                // Add async keyword here
+                await _submitSuggestionData(); // Add await keyword here
+              },
+              child: const Align(
+                alignment: Alignment.bottomCenter,
+                child: MainButton(
+                  text: "ยืนยัน",
+                  bgColor: AppColors.greyColor,
+                  borderColor: AppColors.greyColor,
+                  textColor: AppColors.darkGreyColor,
+                ),
+              ),
+            )
           ],
         ),
       ),

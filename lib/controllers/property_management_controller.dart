@@ -1,16 +1,26 @@
 import 'package:get/get.dart';
 import 'package:acs_community/models/property_management_model.dart';
+import 'package:acs_community/services/api_service.dart';
 
 class PropertyManagementController extends GetxController {
-  final List<PropertyManagement> propertyManagementLists = [
-    PropertyManagement(
-      contactLine: "@elephanttower",
-      contactNumber: "089999999",
-      contactEmail: "elephant_tower@gmail.com"
-    )
-  ];
+  final ApiService _apiService = ApiService();
 
-  PropertyManagement getPropertyManagementDetails() {
-    return propertyManagementLists.first;
+  final RxList<PropertyManagement> propertyManagementLists =
+      <PropertyManagement>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchJuristicInfo();
   }
+
+  Future<void> fetchJuristicInfo() async {
+    try {
+      final List<PropertyManagement> juristicInfo = await _apiService.getPropertyManagement();
+      propertyManagementLists.assignAll(juristicInfo);
+    } catch (e) {
+      print('Error fetching announcements: $e');
+    }
+  }
+
 }

@@ -4,13 +4,11 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/pages/setting/components/body_faq_detail.dart';
 
 class FaqDetailPage extends StatelessWidget {
-  final String faqItem;
-  final int detailId;
+  final int faqId;
 
   FaqDetailPage({
     Key? key, 
-    required this.faqItem,
-    required this.detailId
+    required this.faqId
   }) : super(key: key);
 
   @override
@@ -24,7 +22,7 @@ class FaqDetailPage extends StatelessWidget {
         title: BigText(text: "คำถามที่พบบ่อย", size: Dimensions.font20),
       ),
       backgroundColor: AppColors.whiteColor,
-      body: BodyFaqDetail(faqItem: faqItem, detailId: detailId),
+      body: BodyFaqDetail(faqId: faqId),
     );
   }
 }

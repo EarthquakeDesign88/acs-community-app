@@ -109,25 +109,25 @@ class BodyAttachProofPayment extends StatelessWidget {
               color: Colors.redAccent),
         ),
         SizedBox(height: Dimensions.height20),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: Dimensions.width30),
-          child: const Stack(
-            children: [
-              ImageInputBox(height: 200, width: 330, iconSize: 80),
-              Positioned(
-                top: 140,
-                right: 35,
-                child: CustomIcon(
-                  icon: Icons.camera_alt_outlined,
-                  bgColor: AppColors.darkGreyColor,
-                  iconColor: AppColors.whiteColor,
-                  width: 50,
-                  height: 50,
-                ),
-              ),
-            ],
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: Dimensions.width30),
+        //   child: Stack(
+        //     children: [
+        //       ImageInputBox(height: 200, width: 330, iconSize: 80),
+        //       Positioned(
+        //         top: 140,
+        //         right: 35,
+        //         child: CustomIcon(
+        //           icon: Icons.camera_alt_outlined,
+        //           bgColor: AppColors.darkGreyColor,
+        //           iconColor: AppColors.whiteColor,
+        //           width: 50,
+        //           height: 50,
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         SizedBox(height: Dimensions.height20),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),

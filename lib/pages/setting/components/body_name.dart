@@ -114,11 +114,11 @@ class BodyName extends StatelessWidget {
                   )),
             ),
             SizedBox(height: Dimensions.height10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
-              child:
-                  Align(alignment: Alignment.centerLeft, child: ImageInputBox()),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
+            //   child:
+            //       Align(alignment: Alignment.centerLeft, child: ImageInputBox()),
+            // ),
             SizedBox(height: Dimensions.height30),
             MainButton(
               text: "ยืนยัน",

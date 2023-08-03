@@ -355,7 +355,7 @@ class _BodyRequestRepairState extends State<BodyRequestRepair> {
               ],
             ),
             SizedBox(height: Dimensions.height10),
-            ImageInputBox(),
+            // ImageInputBox(),
             SizedBox(height: Dimensions.height10),
             Row(
               children: [
@@ -366,7 +366,7 @@ class _BodyRequestRepairState extends State<BodyRequestRepair> {
               ],
             ),
             SizedBox(height: Dimensions.height10),
-            ImageInputBox(),
+            // ImageInputBox(),
             SizedBox(height: Dimensions.height10),
             Row(
               children: [
