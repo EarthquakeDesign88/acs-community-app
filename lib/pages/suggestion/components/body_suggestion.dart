@@ -9,18 +9,34 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
-Future<http.Response> sendSuggestionData(
-  Map<String, dynamic> suggestionData) async {
-  final String apiUrl = 'http://10.0.2.2:3000/api/create_suggestion';
+Future<http.Response> sendSuggestionData(Map<String, dynamic> suggestionData, List<File> images) async {
+  const String apiUrl = 'http://10.0.2.2:3000/api/create_suggestion';
+
   try {
-    final response = await http.post(Uri.parse(apiUrl), body: suggestionData);
+    var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+    
+    // Add suggestion data as fields in the request
+    suggestionData.forEach((key, value) {
+      request.fields[key] = value.toString();
+    });
+
+    // Add images to the request
+    for (var i = 0; i < images.length; i++) {
+      var stream = http.ByteStream(Stream.castFrom(images[i].openRead()));
+      var length = await images[i].length();
+      var multipartFile = http.MultipartFile('images', stream, length, filename: 'image$i.jpg');
+      request.files.add(multipartFile);
+    }
+
+    var streamedResponse = await request.send();
+    var response = await http.Response.fromStream(streamedResponse);
     return response;
   } catch (e) {
-    // Handle other exceptions
     print('Error sending suggestion data: $e');
-    throw e; // Rethrow the exception to handle it at the caller.
+    throw e;
   }
 }
+
 
 class BodySuggestion extends StatefulWidget {
   const BodySuggestion({Key? key}) : super(key: key);
@@ -65,15 +81,12 @@ class _BodySuggestionState extends State<BodySuggestion> {
     String email = emailController.text;
     List<File> images = _selectedImages;
 
-    // Create the suggestion data map
+
     Map<String, dynamic> suggestionData = {
       'topic': topic,
       'detail': detail,
       'phoneNumber': phoneNumber,
       'email': email,
-      // Convert the list of images to base64 strings before sending
-      'images':
-          images.map((image) => base64Encode(image.readAsBytesSync())).toList(),
     };
 
     void _showDialog(String title, String content) {
@@ -95,7 +108,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
     }
 
      try {
-      final response = await sendSuggestionData(suggestionData);
+      final response = await sendSuggestionData(suggestionData, images);
       if (response.statusCode == 200) {
         // API call successful, do something
         print('API response: ${response.body}');
@@ -279,8 +292,7 @@ class _BodySuggestionState extends State<BodySuggestion> {
             ),
             GestureDetector(
               onTap: () async {
-                // Add async keyword here
-                await _submitSuggestionData(); // Add await keyword here
+                await _submitSuggestionData();
               },
               child: const Align(
                 alignment: Alignment.bottomCenter,

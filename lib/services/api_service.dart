@@ -78,15 +78,5 @@ class ApiService {
     }
   }
 
-  // Future<List<Covid>> getCovid() async {
-  //   final response = await http.get(
-  //       Uri.parse('https://covid19.ddc.moph.go.th/api/Cases/today-cases-all'));
 
-  //   if (response.statusCode == 200) {
-  //     final List<dynamic> jsonData = jsonDecode(response.body);
-  //     return jsonData.map((data) => Covid.fromJson(data)).toList();
-  //   } else {
-  //     throw Exception('Failed to load data');
-  //   }
-  // }
 }
