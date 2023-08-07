@@ -6,9 +6,10 @@ import 'package:acs_community/widgets/menu_card.dart';
 import 'package:acs_community/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:acs_community/models/menu_item_model.dart';
+import 'dart:math';
 
-class MenuTemplate extends StatelessWidget {
-  const MenuTemplate({Key? key}) : super(key: key);
+class MenuScan extends StatelessWidget {
+  const MenuScan({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,19 +60,14 @@ class MenuTemplate extends StatelessWidget {
         route: RouteHelper.propertyManagement,
       ),
       MenuItem(
-        icon: Icons.elevator_rounded,
-        text: "เข้าใช้งานลิฟท์",
-        route: RouteHelper.authAccess,
-      ),
-      MenuItem(
         icon: Icons.chat_outlined,
         text: "แชทกับนิติ",
         route: RouteHelper.chat,
       ),
     ];
 
-    return Column(
-      children: [
+    return Container(
+      child: Column(children: [
         Stack(
           children: [
             Container(
@@ -85,39 +81,36 @@ class MenuTemplate extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 60,
-              right: 30,
-              child: MaterialButton(
-                minWidth: Dimensions.width50,
-                height: Dimensions.height15,
-                color: Colors.transparent,
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    color: Colors.transparent,
-                  ),
-                  borderRadius: BorderRadius.circular(Dimensions.radius50),
-                ),
-                child: const SmallText(text: "เปลี่ยนชุมชน", color: AppColors.whiteColor)
-              )
-            ),
+                top: 60,
+                right: 30,
+                child: MaterialButton(
+                    minWidth: Dimensions.width50,
+                    height: Dimensions.height15,
+                    color: Color(0xFF09DA98),
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(Dimensions.radius50),
+                    ),
+                    child: const SmallText(
+                        text: "เปลี่ยนชุมชน", color: AppColors.whiteColor))),
             Positioned(
               top: 85,
               left: 30,
               child: BigText(
-                text: "3300/25",
-                size: Dimensions.font26,
-                color: AppColors.whiteColor
-              ),
+                  text: "3300/25",
+                  size: Dimensions.font26,
+                  color: AppColors.whiteColor),
             ),
             Positioned(
               top: 115,
               left: 30,
               child: SmallText(
-                text: "ตึกช้าง",
-                size: Dimensions.font18,
-                color: AppColors.whiteColor
-              ),
+                  text: "ตึกช้าง",
+                  size: Dimensions.font18,
+                  color: AppColors.whiteColor),
             ),
             Positioned(
               top: 140,
@@ -125,10 +118,9 @@ class MenuTemplate extends StatelessWidget {
               child: Row(
                 children: [
                   SmallText(
-                    text: "36°C",
-                    size: Dimensions.font18,
-                    color: AppColors.whiteColor
-                  ),
+                      text: "36°C",
+                      size: Dimensions.font18,
+                      color: AppColors.whiteColor),
                   SizedBox(width: Dimensions.width10),
                   ElevatedButton(
                     onPressed: () {},
@@ -136,18 +128,18 @@ class MenuTemplate extends StatelessWidget {
                       backgroundColor: AppColors.mainColor,
                     ),
                     child: const SmallText(
-                        text: "AQl 50", color: AppColors.whiteColor),
+                      text: "AQl 50", color: AppColors.whiteColor
+                    ),
                   ),
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(height: Dimensions.height10),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width5),
           child: Column(children: [
-            for (int i = 0; i < menuItems.length; i += 2)
+            for (int i = 0; i < 6; i += 2)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -160,7 +152,7 @@ class MenuTemplate extends StatelessWidget {
                       },
                     ),
                   ),
-                  if (i + 1 < menuItems.length)
+                  if (i + 1 < 6)
                     Expanded(
                       child: MenuCard(
                         icon: menuItems[i + 1].icon,
@@ -175,8 +167,62 @@ class MenuTemplate extends StatelessWidget {
                 ],
               ),
           ]),
-        )
-      ],
+        ),
+        SizedBox(height: Dimensions.height5),
+        InkWell(
+          onTap: (){
+             Get.toNamed(RouteHelper.authAccess);
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+            child: Container(
+              height: 150,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                shape: BoxShape.rectangle, color: AppColors.whiteColor
+              ),
+              child: const Icon(
+                  Icons.qr_code,
+                  color: AppColors.mainColor,
+                  size: 100,
+                ),
+              ),
+          ),
+        ),
+        SizedBox(height: Dimensions.height5),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.width5),
+          child: Column(children: [
+            for (int i = 6; i < 10; i += 2)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: MenuCard(
+                      icon: menuItems[i].icon,
+                      text: menuItems[i].text,
+                      onPressed: () {
+                        Get.toNamed(menuItems[i].route);
+                      },
+                    ),
+                  ),
+                  if (i + 1 < 10)
+                    Expanded(
+                      child: MenuCard(
+                        icon: menuItems[i + 1].icon,
+                        text: menuItems[i + 1].text,
+                        onPressed: () {
+                          Get.toNamed(menuItems[i + 1].route);
+                        },
+                      ),
+                    )
+                  else
+                    Expanded(child: Container())
+                ],
+              ),
+          ]),
+        ),
+      ]),
     );
   }
 }

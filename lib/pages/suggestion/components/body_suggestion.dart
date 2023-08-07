@@ -5,38 +5,8 @@ import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/widgets/image_input_box.dart';
 import 'package:acs_community/widgets/main_button.dart';
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'dart:io';
-
-Future<http.Response> sendSuggestionData(Map<String, dynamic> suggestionData, List<File> images) async {
-  const String apiUrl = 'http://10.0.2.2:3000/api/create_suggestion';
-
-  try {
-    var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
-    
-    // Add suggestion data as fields in the request
-    suggestionData.forEach((key, value) {
-      request.fields[key] = value.toString();
-    });
-
-    // Add images to the request
-    for (var i = 0; i < images.length; i++) {
-      var stream = http.ByteStream(Stream.castFrom(images[i].openRead()));
-      var length = await images[i].length();
-      var multipartFile = http.MultipartFile('images', stream, length, filename: 'image$i.jpg');
-      request.files.add(multipartFile);
-    }
-
-    var streamedResponse = await request.send();
-    var response = await http.Response.fromStream(streamedResponse);
-    return response;
-  } catch (e) {
-    print('Error sending suggestion data: $e');
-    throw e;
-  }
-}
-
+import 'package:acs_community/services/api_service.dart';
 
 class BodySuggestion extends StatefulWidget {
   const BodySuggestion({Key? key}) : super(key: key);
@@ -81,15 +51,16 @@ class _BodySuggestionState extends State<BodySuggestion> {
     String email = emailController.text;
     List<File> images = _selectedImages;
 
-
     Map<String, dynamic> suggestionData = {
       'topic': topic,
       'detail': detail,
       'phoneNumber': phoneNumber,
       'email': email,
+      'created_at': DateTime.now().toIso8601String(), 
+      'user_created': 1, 
     };
 
-    void _showDialog(String title, String content) {
+    void showAlert(String title, String content) {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -107,22 +78,22 @@ class _BodySuggestionState extends State<BodySuggestion> {
       );
     }
 
-     try {
-      final response = await sendSuggestionData(suggestionData, images);
+    try {
+      final response =
+          await ApiService().sendSuggestionData(suggestionData, images);
       if (response.statusCode == 200) {
         // API call successful, do something
         print('API response: ${response.body}');
 
-        _showDialog('Success', 'Suggestion data sent successfully!');
+        showAlert('Success', 'ส่งข้อเสนอแนะเสร็จเรียบร้อยแล้ว');
       } else {
-        _showDialog('Error', 'Failed to send suggestion data.');
+        showAlert('Error', 'พบข้อผิดพลาด โปรดลองใหม่');
       }
     } catch (e) {
       // Handle other exceptions
       print('Error sending suggestion data: $e');
-      _showDialog('Error', 'An error occurred while sending suggestion data.');
+      showAlert('Error', 'An error occurred while sending suggestion data.');
     }
-  
   }
 
   @override
@@ -290,17 +261,23 @@ class _BodySuggestionState extends State<BodySuggestion> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () async {
-                await _submitSuggestionData();
-              },
-              child: const Align(
-                alignment: Alignment.bottomCenter,
-                child: MainButton(
-                  text: "ยืนยัน",
-                  bgColor: AppColors.greyColor,
-                  borderColor: AppColors.greyColor,
-                  textColor: AppColors.darkGreyColor,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(top: Dimensions.height40),
+                child: GestureDetector(
+                  onTap: () async {
+                    await _submitSuggestionData();
+                  },
+                  child: const Align(
+                    alignment: Alignment.bottomCenter,
+                    child: MainButton(
+                      text: "ยืนยัน",
+                      bgColor: AppColors.greyColor,
+                      borderColor: AppColors.greyColor,
+                      textColor: AppColors.darkGreyColor,
+                    ),
+                  ),
                 ),
               ),
             )
