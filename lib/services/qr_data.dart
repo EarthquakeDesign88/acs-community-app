@@ -1,5 +1,6 @@
 import 'package:acs_community/utils/app_constants.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 Future<void> sendQRData(String qrData) async {
   try {
@@ -15,13 +16,20 @@ Future<void> sendQRData(String qrData) async {
 
     print('QR Data: $data');
 
+    // final res = await http.post(
+    //   Uri.parse('${AppConstants.baseUrl}${AppConstants.generateQrCodeUri}'),
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   body: Uri(queryParameters: data).query,
+    // );
+
     final res = await http.post(
-      // Uri.parse('${AppConstants.baseUrl}${AppConstants.generateQrCodeUri}'),
-      Uri.parse('http://10.0.2.2/api/generate_qrcode'),
+      Uri.parse('https://www.eptg-acsc.co.th/app-backend/api/generate_qrcode.php'), // Corrected URL
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json', // Set content type to JSON
       },
-      body: Uri(queryParameters: data).query,
+      body: jsonEncode(data), // Convert data to JSON string
     );
 
     if (res.statusCode == 200) {

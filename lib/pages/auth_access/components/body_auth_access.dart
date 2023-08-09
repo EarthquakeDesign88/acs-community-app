@@ -57,16 +57,17 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BigText(text: "QR Code เพื่อใช้ยืนยันตัวตน", size: Dimensions.font20),
-          QrImageView(
-            data: widget.qrData,
-            size: 200,
-          ),
-          SizedBox(height: Dimensions.height20),
+     return Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        BigText(text: "QR Code เพื่อใช้ยืนยันตัวตน", size: Dimensions.font20),
+        QrImageView(
+          data: widget.qrData,
+          size: 200,
+        ),
+        SizedBox(height: Dimensions.height20),
+        if (remainingSeconds > 0) // Check if the countdown is still running
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -83,15 +84,21 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
               ),
             ],
           ),
-          SizedBox(height: Dimensions.height10),
-          SmallText(
-            text: "นำ QR Code แนบที่เครื่องสแกน",
+        if (remainingSeconds <= 0) // Display "timeOut" when countdown finishes
+          BigText(
+            text: "QR Code หมดอายุ ไม่สามารถใช้งานได้",
             size: Dimensions.font16,
-            color: AppColors.blackColor,
+            color: Colors.red,
           ),
-          SizedBox(height: Dimensions.height20),
-        ],
-      ),
-    );
+        SizedBox(height: Dimensions.height10),
+        SmallText(
+          text: "นำ QR Code แนบที่เครื่องสแกน",
+          size: Dimensions.font16,
+          color: AppColors.blackColor,
+        ),
+        SizedBox(height: Dimensions.height20),
+      ],
+    ),
+  );
   }
 }

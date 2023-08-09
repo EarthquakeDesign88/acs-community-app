@@ -46,6 +46,8 @@ import 'package:acs_community/pages/payment_reminder/payment_reminder_page.dart'
 import 'package:acs_community/pages/payment_reminder/payment_reminder_detail_page.dart';
 import 'package:acs_community/pages/payment_reminder/attach_proof_payment_page.dart';
 
+import 'package:acs_community/pages/auth_access/qr_scanner.dart';
+
 class RouteHelper {
   static String initial = "/";
   static String welcome = "/welcome";
@@ -94,6 +96,8 @@ class RouteHelper {
   static String paymentReminder = '/payment_reminder';
   static String paymentReminderDetail = '/payment_reminder/detail';
   static String attachProofPayment = '/payment_reminder/attach_proof_payment';
+  
+  static String qrScanner = '/qr_scanner';
 
   static String getAnswer(int faqId) =>
       '$faqAnswer?faqId=$faqId';
@@ -189,5 +193,6 @@ class RouteHelper {
     GetPage(name: paymentReminder, page: () => const PaymentReminderPage()),
     GetPage(name: paymentReminderDetail, page: () => const PaymentReminderDetailPage()),
     GetPage(name: attachProofPayment, page: () => const AttachProofPaymentPage()),
+    GetPage(name: qrScanner, page: () => QRScannerPage()),
   ];
 }

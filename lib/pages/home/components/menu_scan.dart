@@ -170,8 +170,8 @@ class MenuScan extends StatelessWidget {
         ),
         SizedBox(height: Dimensions.height5),
         InkWell(
-          onTap: (){
-             Get.toNamed(RouteHelper.authAccess);
+          onTap: () {
+            Get.toNamed(RouteHelper.authAccess);
           },
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
@@ -179,14 +179,13 @@ class MenuScan extends StatelessWidget {
               height: 150,
               width: double.infinity,
               decoration: const BoxDecoration(
-                shape: BoxShape.rectangle, color: AppColors.whiteColor
-              ),
+                  shape: BoxShape.rectangle, color: AppColors.whiteColor),
               child: const Icon(
-                  Icons.qr_code,
-                  color: AppColors.mainColor,
-                  size: 100,
-                ),
+                Icons.qr_code,
+                color: AppColors.mainColor,
+                size: 100,
               ),
+            ),
           ),
         ),
         SizedBox(height: Dimensions.height5),
@@ -222,6 +221,26 @@ class MenuScan extends StatelessWidget {
               ),
           ]),
         ),
+        SizedBox(height: Dimensions.height5),
+        // InkWell(
+        //   onTap: () {
+        //     Get.toNamed(RouteHelper.qrScanner);
+        //   },
+        //   child: Padding(
+        //     padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+        //     child: Container(
+        //       height: 100,
+        //       width: double.infinity,
+        //       decoration: const BoxDecoration(
+        //           shape: BoxShape.rectangle, color: AppColors.whiteColor),
+        //       child: const Icon(
+        //         Icons.camera_alt_outlined,
+        //         color: AppColors.mainColor,
+        //         size: 100,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ]),
     );
   }
