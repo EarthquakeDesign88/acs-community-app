@@ -5,8 +5,8 @@ class Announcement {
   final String subtitle;
   final String type;
   final String date;
-  final int totalThank;
-  final int totalView;
+  final String totalThank;
+  final String totalView;
 
   Announcement({
     required this.id,
@@ -28,8 +28,8 @@ class Announcement {
       subtitle: json['subtitle'],
       type: json['type'],
       date: json['date'],
-      totalThank: json['totalThank'],
-      totalView: json['totalView'],
+      totalThank: json['totalThank'], // Convert to int
+      totalView: json['totalView'],   // Convert to int
     );
   }
 }

@@ -12,6 +12,7 @@ class BodyPhoneBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _phoneBookController.fetchPhoneBooks();
+    print(_phoneBookController.phoneBookLists);
 
     return Obx(() {
       if (_phoneBookController.phoneBookLists.isEmpty) {

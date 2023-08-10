@@ -25,11 +25,11 @@ Future<void> sendQRData(String qrData) async {
     // );
 
     final res = await http.post(
-      Uri.parse('https://www.eptg-acsc.co.th/app-backend/api/generate_qrcode.php'), // Corrected URL
+      Uri.parse('${AppConstants.baseUrl}${AppConstants.generateQrCodeUri}'), 
       headers: {
-        'Content-Type': 'application/json', // Set content type to JSON
+        'Content-Type': 'application/json', 
       },
-      body: jsonEncode(data), // Convert data to JSON string
+      body: jsonEncode(data), 
     );
 
     if (res.statusCode == 200) {

@@ -6,8 +6,8 @@ class PhoneBookController extends GetxController {
   final ApiService _apiService = ApiService();
 
   final RxList<PhoneBook> phoneBookLists = <PhoneBook>[].obs;
-  List<String> contactTypes = ["myProperty", "emergency", "others"];
-  // List<String> contactTypes = ["1", "2", "3"];
+  // List<String> contactTypes = ["myProperty", "emergency", "others"];
+  List<String> contactTypes = ["1", "2", "3"];
   List<String> contactTypesTH = ["โครงการ", "ฉุกเฉิน", "อื่นๆ"];
 
   @override

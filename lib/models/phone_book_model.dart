@@ -14,15 +14,15 @@ class PhoneBook {
 
   factory PhoneBook.fromJson(Map<String, dynamic> json) {
     return PhoneBook(
-      id: json['id'],
-      contactName: json['contactName'],
-      contactNumber: json['contactNumber'],
-      contactType: json['contactType'],
+      // id: json['id'],
+      // contactName: json['contactName'],
+      // contactNumber: json['contactNumber'],
+      // contactType: json['contactType'],
 
-      // id: json['contact_id'],
-      // contactName: json['contact_name'],
-      // contactNumber: json['contact_number'],
-      // contactType: json['contact_cate'],
+      id: json['contact_id'],
+      contactName: json['contact_name'],
+      contactNumber: json['contact_number'],
+      contactType: json['contact_cate'],
     );
   }
 }

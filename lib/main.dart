@@ -9,7 +9,7 @@ import 'package:acs_community/controllers/facility_controller.dart';
 import 'package:acs_community/controllers/property_management_controller.dart';
 import 'package:acs_community/controllers/faq_controller.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Initialize GetX
   initializeDateFormatting('th');
 
@@ -29,12 +29,10 @@ class MyApp extends StatelessWidget {
     // _covidController.fetchCovid();
 
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ACS Community',
-      // initialRoute: RouteHelper.getWelcome(),
-      home: const HomePage(),
-      getPages: RouteHelper.routes
-    );
-
+        debugShowCheckedModeBanner: false,
+        title: 'ACS Community',
+        // initialRoute: RouteHelper.getWelcome(),
+        home: const HomePage(),
+        getPages: RouteHelper.routes);
   }
 }

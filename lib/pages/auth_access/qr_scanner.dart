@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 class QRScannerPage extends StatefulWidget {
   @override
