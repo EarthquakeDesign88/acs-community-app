@@ -20,10 +20,10 @@ class AppConstants {
   static const String baseUrl = "https://www.eptg-acsc.co.th/app-backend";
   static const String generateQrCodeUri = "/api/generate_qrcode.php";
   static const String fetchPhonebook = "/api/phonebook.php";
-  static const String fetchAnnouncement = "/api/announcement.php";
   static const String fetchFacility= "/api/facility.php";
-
-  static const String fetchJuristicInfo = "/api/juristic_info.php";
+  static const String fetchAnnouncement = "/api/announcement.php";
+  static const String fetchJuristicInfo = "/api/juristic.php";
+  
   static const String fetchFaq = "/api/faq.php";
   static const String createSuggestion = "/api/create_suggestion.php";
 

@@ -1,3 +1,4 @@
+import 'package:acs_community/controllers/phone_book_controller.dart';
 import 'package:acs_community/pages/home/home_page.dart';
 // import 'package:acs_community/pages/welcome/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ void main() async {
   Get.put(FacilityController());
   Get.put(PropertyManagementController());
   Get.put(FaqController());
+
 
   runApp(MyApp());
 }
