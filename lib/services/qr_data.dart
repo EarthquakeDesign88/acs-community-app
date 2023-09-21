@@ -16,13 +16,6 @@ Future<void> sendQRData(String qrData) async {
 
     print('QR Data: $data');
 
-    // final res = await http.post(
-    //   Uri.parse('${AppConstants.baseUrl}${AppConstants.generateQrCodeUri}'),
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    //   body: Uri(queryParameters: data).query,
-    // );
 
     final res = await http.post(
       Uri.parse('${AppConstants.baseUrl}${AppConstants.generateQrCodeUri}'), 

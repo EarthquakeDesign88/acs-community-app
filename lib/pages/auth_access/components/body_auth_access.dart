@@ -4,6 +4,8 @@ import 'package:acs_community/widgets/big_text.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class BodyAuthAccess extends StatefulWidget {
   final String qrData;
@@ -20,11 +22,13 @@ class BodyAuthAccess extends StatefulWidget {
 class _BodyAuthAccessState extends State<BodyAuthAccess> {
   int remainingSeconds = 180; // 3 minutes in seconds
   late Timer countdownTimer;
+  bool isQRCodeAuthenticated = false; 
 
   @override
   void initState() {
     super.initState();
     startCountdown();
+    checkQRCodeStatus();
   }
 
   void startCountdown() {
@@ -36,6 +40,80 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
         timer.cancel(); // Stop the timer when countdown finishes
       }
     });
+  }
+
+  void showAuthenticatedDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Authenticated successfully'),
+          content: Text('ยืนยันตัวตนสำเร็จ'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showQRCodeExpiredDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('QR Code Expired'),
+          content: Text('QR Code หมดอายุ ไม่สามารถใช้งานได้'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> checkQRCodeStatus() async {
+    const endpoint = 'https://www.eptg-acsc.co.th/app-backend/api/check_status.php?qr_data=';
+    try {
+      await Future.doWhile(() async {
+        final res = await http.get(Uri.parse('$endpoint${widget.qrData}'));
+
+        if (res.statusCode == 200) {
+          final responseJson = jsonDecode(res.body);
+          final status = responseJson['status'];
+
+          if (status == 'Authenticated successfully') {
+            setState(() {
+              isQRCodeAuthenticated = true; // Update the state
+            });
+            showAuthenticatedDialog();
+            return false; // Stop checking
+          }
+        }
+
+        // Continue checking every second until the timeout or authenticated
+        await Future.delayed(Duration(seconds: 1));
+        return remainingSeconds > 0;
+      });
+
+      // If the loop exits, it means the QR code status did not change
+      if (!isQRCodeAuthenticated) {
+        showQRCodeExpiredDialog();
+      }
+    } catch (err) {
+      // Handle network errors or other exceptions
+      print('Error checking QR code status: $err');
+    }
   }
 
   @override
