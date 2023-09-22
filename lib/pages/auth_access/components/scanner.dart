@@ -60,11 +60,11 @@ class _ScannerState extends State<Scanner> {
       body: Column(
       children: <Widget>[
         Expanded(
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
-            ),
+          child: QRView(
+            key: qrKey,
+            onQRViewCreated: _onQRViewCreated,
           ),
+        ),
           SizedBox(height: 20),
           Text("API Response: $apiResponse"), // Display API response here
         ],
@@ -74,7 +74,9 @@ class _ScannerState extends State<Scanner> {
 }
 
 void main() {
-  runApp(MaterialApp(
-    home: Scanner(),
-  ));
+  runApp(
+    MaterialApp(
+      home: Scanner(),
+    )
+  );
 }

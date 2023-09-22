@@ -6,6 +6,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:acs_community/routes/route_helper.dart';
+import 'package:get/get.dart';
 
 class BodyAuthAccess extends StatefulWidget {
   final String qrData;
@@ -20,9 +22,9 @@ class BodyAuthAccess extends StatefulWidget {
 }
 
 class _BodyAuthAccessState extends State<BodyAuthAccess> {
-  int remainingSeconds = 180; // 3 minutes in seconds
+  int remainingSeconds = 10; // 3 minutes in seconds
   late Timer countdownTimer;
-  bool isQRCodeAuthenticated = false; 
+  bool isQRCodeAuthenticated = false;
 
   @override
   void initState() {
@@ -45,6 +47,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
   void showAuthenticatedDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Authenticated successfully'),
@@ -53,7 +56,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
             TextButton(
               child: Text('OK'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.toNamed(RouteHelper.home);
               },
             ),
           ],
@@ -65,6 +68,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
   void showQRCodeExpiredDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('QR Code Expired'),
@@ -73,7 +77,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
             TextButton(
               child: Text('OK'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.toNamed(RouteHelper.home);
               },
             ),
           ],
@@ -83,7 +87,8 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
   }
 
   Future<void> checkQRCodeStatus() async {
-    const endpoint = 'https://www.eptg-acsc.co.th/app-backend/api/check_status.php?qr_data=';
+    const endpoint =
+        'https://www.eptg-acsc.co.th/app-backend/api/check_status.php?qr_data=';
     try {
       await Future.doWhile(() async {
         final res = await http.get(Uri.parse('$endpoint${widget.qrData}'));
@@ -135,17 +140,24 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
 
   @override
   Widget build(BuildContext context) {
-     return Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        BigText(text: "QR Code เพื่อใช้ยืนยันตัวตน", size: Dimensions.font20),
-        QrImageView(
-          data: widget.qrData,
-          size: 200,
-        ),
-        SizedBox(height: Dimensions.height20),
-        if (remainingSeconds > 0) // Check if the countdown is still running
+    if (remainingSeconds > 0) {
+      return buildWidgetWhenTimerIsRunning();
+    } else {
+      return buildWidgetWhenTimerExpires();
+    }
+  }
+
+  Widget buildWidgetWhenTimerIsRunning() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BigText(text: "QR Code เพื่อใช้ยืนยันตัวตน", size: Dimensions.font20),
+          QrImageView(
+            data: widget.qrData,
+            size: 200,
+          ),
+          SizedBox(height: Dimensions.height20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -162,21 +174,41 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
               ),
             ],
           ),
-        if (remainingSeconds <= 0) // Display "timeOut" when countdown finishes
+          SizedBox(height: Dimensions.height10),
+          Visibility(
+            visible: remainingSeconds >
+                0, // Hide if remainingSeconds is zero or less
+            child: SmallText(
+              text: "นำ QR Code แนบที่เครื่องสแกน",
+              size: Dimensions.font16,
+              color: AppColors.blackColor,
+            ),
+          ),
+          SizedBox(height: Dimensions.height20),
+        ],
+      ),
+    );
+  }
+
+  Widget buildWidgetWhenTimerExpires() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BigText(text: "QR Code เพื่อใช้ยืนยันตัวตน", size: Dimensions.font20),
+          QrImageView(
+            data: widget.qrData,
+            size: 200,
+          ),
+          SizedBox(height: Dimensions.height20),
           BigText(
             text: "QR Code หมดอายุ ไม่สามารถใช้งานได้",
             size: Dimensions.font16,
             color: Colors.red,
           ),
-        SizedBox(height: Dimensions.height10),
-        SmallText(
-          text: "นำ QR Code แนบที่เครื่องสแกน",
-          size: Dimensions.font16,
-          color: AppColors.blackColor,
-        ),
-        SizedBox(height: Dimensions.height20),
-      ],
-    ),
-  );
+          SizedBox(height: Dimensions.height20),
+        ],
+      ),
+    );
   }
 }
