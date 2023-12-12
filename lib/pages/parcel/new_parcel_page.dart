@@ -34,7 +34,7 @@ class _NewParcelPageState extends State<NewParcelPage> {
         backgroundColor: AppColors.whiteColor,
         iconTheme: const IconThemeData(color: AppColors.darkGreyColor),
         centerTitle: true,
-        title: BigText(text: "พัสดุ " + (parcel?.number ?? "ไม่มีเลขพัสดุ"), size: Dimensions.font20)
+        title: BigText(text: "พัสดุ ${parcel?.number ?? "ไม่มีเลขพัสดุ"}", size: Dimensions.font20)
       ),
       backgroundColor: AppColors.menuColor,
       body: BodyNewParcel(parcelId: widget.parcelId),

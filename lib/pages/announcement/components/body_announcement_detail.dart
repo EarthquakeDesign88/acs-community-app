@@ -14,15 +14,15 @@ class BodyAnnouncementDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AnnouncementController _announcementController = Get.find();
-    final Announcement? announcement = _announcementController.getAnnouncementById(detailId);
+    final AnnouncementController announcementController = Get.find();
+    final Announcement? announcement = announcementController.getAnnouncementById(detailId);
 
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 200,
             child: Image.network(
@@ -39,8 +39,9 @@ class BodyAnnouncementDetail extends StatelessWidget {
               children: [
                 SizedBox(height: Dimensions.height15),
                 BigText(
-                    text: announcement?.title ?? 'ไม่มีประกาศ',
-                    size: Dimensions.font22),
+                  text: announcement?.title ?? 'ไม่มีประกาศ',
+                  size: Dimensions.font22
+                ),
                 SizedBox(height: Dimensions.height15),
                 SmallText(text: announcement?.date ?? 'ไม่พบข้อมูล'),
                 SizedBox(height: Dimensions.height15),

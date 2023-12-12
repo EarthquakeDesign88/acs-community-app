@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
-import 'package:acs_community/widgets/image_input_box.dart';
+// import 'package:acs_community/widgets/image_input_box.dart';
 import 'package:acs_community/widgets/main_button.dart';
 import 'package:acs_community/widgets/small_text.dart';
 import 'package:acs_community/widgets/text_underline.dart';

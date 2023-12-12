@@ -6,7 +6,6 @@ import 'package:acs_community/widgets/menu_card.dart';
 import 'package:acs_community/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:acs_community/models/menu_item_model.dart';
-import 'dart:math';
 
 class MenuScan extends StatelessWidget {
   const MenuScan({Key? key}) : super(key: key);
@@ -222,25 +221,6 @@ class MenuScan extends StatelessWidget {
           ]),
         ),
         SizedBox(height: Dimensions.height5),
-        // InkWell(
-        //   onTap: () {
-        //     Get.toNamed(RouteHelper.qrScanner);
-        //   },
-        //   child: Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-        //     child: Container(
-        //       height: 100,
-        //       width: double.infinity,
-        //       decoration: const BoxDecoration(
-        //           shape: BoxShape.rectangle, color: AppColors.whiteColor),
-        //       child: const Icon(
-        //         Icons.camera_alt_outlined,
-        //         color: AppColors.mainColor,
-        //         size: 100,
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ]),
     );
   }

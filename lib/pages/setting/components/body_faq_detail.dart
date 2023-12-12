@@ -32,7 +32,7 @@ class BodyFaqDetail extends StatelessWidget {
                 children: [
                   BottomLine(),
                   SizedBox(height: Dimensions.height10),
-                  SmallText(text: "ข้อมูลนี้ตอบคำถามของคุณหรือเปล่า?"),
+                  const SmallText(text: "ข้อมูลนี้ตอบคำถามของคุณหรือเปล่า?"),
                   SizedBox(height: Dimensions.height10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +52,7 @@ class BodyFaqDetail extends StatelessWidget {
                         iconColor: AppColors.blackColor,
                         iconSize: 30,
                       ),
-                      SmallText(text: "ไม่"),
+                      const SmallText(text: "ไม่"),
                     ],
                   ),
                   SizedBox(height: Dimensions.height20),

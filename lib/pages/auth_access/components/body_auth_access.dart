@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:acs_community/routes/route_helper.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class BodyAuthAccess extends StatefulWidget {
   final String qrData;
@@ -22,7 +23,7 @@ class BodyAuthAccess extends StatefulWidget {
 }
 
 class _BodyAuthAccessState extends State<BodyAuthAccess> {
-  int remainingSeconds = 10; // 3 minutes in seconds
+  int remainingSeconds = 120; // 2 minutes in seconds
   late Timer countdownTimer;
   bool isQRCodeAuthenticated = false;
 
@@ -34,7 +35,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
   }
 
   void startCountdown() {
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         remainingSeconds--;
       });
@@ -50,11 +51,11 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
       barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Authenticated successfully'),
-          content: Text('ยืนยันตัวตนสำเร็จ'),
+          title: const Text('Authenticated successfully'),
+          content: const Text('ยืนยันตัวตนสำเร็จ'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Get.toNamed(RouteHelper.home);
               },
@@ -71,11 +72,11 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
       barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('QR Code Expired'),
-          content: Text('QR Code หมดอายุ ไม่สามารถใช้งานได้'),
+          title: const Text('QR Code Expired'),
+          content: const Text('QR Code หมดอายุ ไม่สามารถใช้งานได้'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Get.toNamed(RouteHelper.home);
               },
@@ -87,8 +88,9 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
   }
 
   Future<void> checkQRCodeStatus() async {
-    const endpoint =
-        'https://www.eptg-acsc.co.th/app-backend/api/check_status.php?qr_data=';
+    final Logger logger = Logger();
+    const endpoint = 'https://www.eptg-acsc.co.th/app-backend/api/check_status.php?qr_data=';
+    
     try {
       await Future.doWhile(() async {
         final res = await http.get(Uri.parse('$endpoint${widget.qrData}'));
@@ -107,7 +109,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
         }
 
         // Continue checking every second until the timeout or authenticated
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
         return remainingSeconds > 0;
       });
 
@@ -116,8 +118,7 @@ class _BodyAuthAccessState extends State<BodyAuthAccess> {
         showQRCodeExpiredDialog();
       }
     } catch (err) {
-      // Handle network errors or other exceptions
-      print('Error checking QR code status: $err');
+      logger.e('Error checking QR code status: $err');
     }
   }
 

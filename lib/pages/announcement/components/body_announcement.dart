@@ -15,7 +15,7 @@ class BodyAnnouncement extends StatelessWidget {
 
     return Obx(() {
       if (_announcementController.announcementLists.isEmpty) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       } else {

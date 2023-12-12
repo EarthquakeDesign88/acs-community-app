@@ -1,11 +1,14 @@
 import 'package:acs_community/utils/app_constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:logger/logger.dart';
 
 Future<void> sendQRData(String qrData) async {
+  final Logger logger = Logger();
+
   try {
     final generateTime = DateTime.now();
-    final expirationTime = generateTime.add(const Duration(minutes: 3));
+    final expirationTime = generateTime.add(const Duration(minutes: 2));
 
     var data = {
       "qrdata": qrData,
@@ -14,8 +17,7 @@ Future<void> sendQRData(String qrData) async {
       "expiration_time": expirationTime.toString()
     };
 
-    print('QR Data: $data');
-
+    logger.e('QR Data: $data');
 
     final res = await http.post(
       Uri.parse('${AppConstants.baseUrl}${AppConstants.generateQrCodeUri}'), 
@@ -26,11 +28,11 @@ Future<void> sendQRData(String qrData) async {
     );
 
     if (res.statusCode == 200) {
-      print('QR Data sent successfully');
+      logger.e('QR Data sent successfully');
     } else {
-      print('Failed to send QR Data. Status code: ${res.statusCode}');
+      logger.e('Failed to send QR Data. Status code: ${res.statusCode}');
     }
   } catch (err) {
-    print('Error sending QR Data: $err');
+    logger.e('Error sending QR Data: $err');
   }
 }

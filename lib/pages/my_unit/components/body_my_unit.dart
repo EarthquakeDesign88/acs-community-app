@@ -306,8 +306,10 @@ class _BodyMyUnitState extends State<BodyMyUnit> {
                             onTap: () {
                               showCustomUnit();
                             },
-                            child: const Icon(Icons.more_horiz,
-                                color: AppColors.darkGreyColor),
+                            child: const Icon(
+                              Icons.more_horiz,
+                              color: AppColors.darkGreyColor
+                            ),
                           ),
                         ),
                       ),

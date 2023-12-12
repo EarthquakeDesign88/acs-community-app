@@ -27,7 +27,7 @@ class _AuthAccessPageState extends State<AuthAccessPage> {
   }
 
   String qrData = '';
-  int expirationTime = 3 * 60; // 3 minutes in seconds
+  int expirationTime = 3 * 40; // 2 minutes in seconds
 
   void generateQRCode() {
     String randomData = generateRandomCode(50);

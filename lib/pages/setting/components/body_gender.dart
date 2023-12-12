@@ -88,9 +88,9 @@ class _BodyGenderState extends State<BodyGender> {
             padding: EdgeInsets.symmetric(horizontal: Dimensions.width20),
             child: Row(
               children: [
-                SmallText(text: "ท่านสามารถอ่านข้อมูลเพิ่มเติม", size: 13),
+                const SmallText(text: "ท่านสามารถอ่านข้อมูลเพิ่มเติม", size: 13),
                 SizedBox(width: Dimensions.width5),
-                BigText(
+                const BigText(
                   text: "ทำไมข้อมูลนี้ถึงสำคัญ",
                   size: 13,
                   color: AppColors.mainColor

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:acs_community/models/announcement_model.dart';
 import 'package:acs_community/services/api_service.dart';
+import 'package:logger/logger.dart';
+
 
 class AnnouncementController extends GetxController {
   final ApiService _apiService = ApiService();
@@ -8,6 +10,8 @@ class AnnouncementController extends GetxController {
   final RxList<Announcement> announcementLists = <Announcement>[].obs;
   final List<String> announcementTypes = ["important", "general"];
   final List<String> announcementTypesTH = ["ประกาศสำคัญ", "ข่าวสารทั่วไป"];
+
+  final Logger logger = Logger();
 
   @override
   void onInit() {
@@ -20,7 +24,7 @@ class AnnouncementController extends GetxController {
       final List<Announcement> announcements = await _apiService.getAnnouncements();
       announcementLists.assignAll(announcements);
     } catch (e) {
-      print('Error fetching announcements: $e');
+      logger.e('Error fetching announcements: $e'); 
     }
   }
 

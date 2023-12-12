@@ -75,7 +75,7 @@ class _BodyNotificationState extends State<BodyNotification> {
               ],
             ),
             SizedBox(height: Dimensions.height5),
-            BottomLine(),
+            const BottomLine(),
             SizedBox(height: Dimensions.height5),
             Row(
               children: [
@@ -116,7 +116,7 @@ class _BodyNotificationState extends State<BodyNotification> {
               ],
             ),
             SizedBox(height: Dimensions.height5),
-            BottomLine(),
+            const BottomLine(),
             SizedBox(height: Dimensions.height5),
             Row(
               children: [
@@ -157,7 +157,7 @@ class _BodyNotificationState extends State<BodyNotification> {
               ],
             ),
             SizedBox(height: Dimensions.height5),
-            BottomLine(),
+            const BottomLine(),
             SizedBox(height: Dimensions.height5),
             Row(
               children: [

@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 import 'package:acs_community/models/phone_book_model.dart';
 import 'package:acs_community/services/api_service.dart';
+import 'package:logger/logger.dart';
 
 class PhoneBookController extends GetxController {
   final ApiService _apiService = ApiService();
 
   final RxList<PhoneBook> phoneBookLists = <PhoneBook>[].obs;
+  final Logger logger = Logger();
+
   // List<String> contactTypes = ["myProperty", "emergency", "others"]; //Used for local database 
   List<String> contactTypes = ["1", "2", "3"];
   List<String> contactTypesTH = ["โครงการ", "ฉุกเฉิน", "อื่นๆ"];
@@ -21,7 +24,7 @@ class PhoneBookController extends GetxController {
       final List<PhoneBook> phoneBooks = await _apiService.getPhoneBooks();
       phoneBookLists.assignAll(phoneBooks);
     } catch (e) {
-      print('Error fetching announcements: $e');
+      logger.e('Error fetching announcements: $e');
     }
   }
 

@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:acs_community/models/facility_model.dart';
 import 'package:acs_community/services/api_service.dart';
+import 'package:logger/logger.dart';
 
 class FacilityController extends GetxController {
   final ApiService _apiService = ApiService();
   final RxList<Facility> facilityLists = <Facility>[].obs;
+  final Logger logger = Logger();
 
   @override
   void onInit() {
@@ -17,7 +19,7 @@ class FacilityController extends GetxController {
       final List<Facility> facilities = await _apiService.getFacilities();
       facilityLists.assignAll(facilities);
     } catch (e) {
-      print('Error fetching announcements: $e');
+      logger.e('Error fetching facilities: $e');
     }
   }
 

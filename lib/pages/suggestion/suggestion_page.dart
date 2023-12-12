@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:acs_community/utils/constants.dart';
 import 'package:acs_community/widgets/big_text.dart';
-import 'package:acs_community/widgets/main_button.dart';
+// import 'package:acs_community/widgets/main_button.dart';
 import 'package:acs_community/pages/suggestion/components/body_suggestion.dart';
 
 class SuggestionPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class SuggestionPage extends StatelessWidget {
           centerTitle: true,
           title: BigText(text: "ข้อเสนอแนะ", size: Dimensions.font20)),
       backgroundColor: AppColors.whiteColor,
-      body: BodySuggestion(),
+      body: const BodySuggestion(),
     );
   }
 }

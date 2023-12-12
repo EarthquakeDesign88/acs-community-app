@@ -13,8 +13,8 @@ class BodyFacilityBooking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FacilityController _facilityController = Get.find();
-    final Facility? facility = _facilityController.bookingById(facilityId);
+    final FacilityController facilityController = Get.find();
+    final Facility? facility = facilityController.bookingById(facilityId);
 
     return Stack(
       children: [

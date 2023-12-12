@@ -19,7 +19,7 @@ class BodyEmail extends StatelessWidget {
             width: 150,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/icons/email.jpg")
+                image: AssetImage("assets/icons/email.jpg")
               )
             ),
           ),

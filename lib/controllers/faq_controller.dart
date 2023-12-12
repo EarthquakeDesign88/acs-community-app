@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:acs_community/models/faq_model.dart';
 import 'package:acs_community/services/api_service.dart';
+import 'package:logger/logger.dart';
 
 class FaqController extends GetxController {
   final ApiService _apiService = ApiService();
   final RxList<Faq> faqLists = <Faq>[].obs;
+  final Logger logger = Logger();
 
   @override
   void onInit() {
@@ -17,7 +19,7 @@ class FaqController extends GetxController {
       final List<Faq> faqs = await _apiService.getFaq();
       faqLists.assignAll(faqs);
     } catch (e) {
-      print('Error fetching faqs: $e');
+      logger.e('Error fetching faqs: $e');
     }
   }
 

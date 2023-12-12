@@ -25,14 +25,17 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: AppColors.whiteColor,
-          iconTheme: const IconThemeData(
-            color: AppColors.darkGreyColor,
-          ),
-          centerTitle: true,
-          title: BigText(
-              text: "สแกนรหัสเชิญจาก QR code", size: Dimensions.font20)),
+        elevation: 0,
+        backgroundColor: AppColors.whiteColor,
+        iconTheme: const IconThemeData(
+          color: AppColors.darkGreyColor,
+        ),
+        centerTitle: true,
+        title: BigText(
+          text: "สแกนรหัสเชิญจาก QR code", 
+          size: Dimensions.font20
+        )
+      ),
       body: Column(
         children: <Widget>[
           Expanded(

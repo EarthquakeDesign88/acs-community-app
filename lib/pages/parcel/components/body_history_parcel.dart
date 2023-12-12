@@ -21,8 +21,8 @@ class BodyHistoryParcel extends StatefulWidget {
 class _BodyHistoryParcelState extends State<BodyHistoryParcel> {
   @override
   Widget build(BuildContext context) {
-    final ParcelController _parcelController = Get.find();
-    final Parcel? parcel = _parcelController.getParcelById(widget.parcelId);
+    final ParcelController parcelController = Get.find();
+    final Parcel? parcel = parcelController.getParcelById(widget.parcelId);
 
     return Stack(
       children: [
